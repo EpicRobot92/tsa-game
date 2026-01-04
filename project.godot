@@ -11,5 +11,28 @@ config_version=5
 [application]
 
 config/name="TSAGame"
+run/main_scene="uid://curm05ilc087u"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=100
+window/size/viewport_height=64
+window/size/window_width_override=1000
+window/size/window_height_override=640
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[layer_names]
+
+2d_physics/canvas_textures/default_texture_filter=1
+2d_physics/size/window_width_override=0
+2d_physics/stretch/scale_mode="fractional"
+2d_physics/stretch/mode="disabled"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+textures/size/window_height_override=0

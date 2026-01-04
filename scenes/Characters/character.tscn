@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cen0t6j1l87wf"]
+
+[ext_resource type="Script" uid="uid://ba8qsvbek5sse" path="res://Scenes/Characters/character.gd" id="1_eu1pv"]
+[ext_resource type="Texture2D" uid="uid://bhgna6dbbfckb" path="res://assets/art/characters/shadow.png" id="2_lmtek"]
+[ext_resource type="PackedScene" uid="uid://dhejerna8gg1u" path="res://scenes/colliders/damage_emmiter.tscn" id="3_lmtek"]
+
+[node name="character" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_eu1pv")
+speed = 5.0
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_lmtek")
+centered = false
+offset = Vector2(-7, 0)
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DamageEmmiter" parent="." instance=ExtResource("3_lmtek")]
+
+[editable path="DamageEmmiter"]
