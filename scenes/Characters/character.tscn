@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cen0t6j1l87wf"]
+[gd_scene load_steps=5 format=3 uid="uid://cen0t6j1l87wf"]
 
-[ext_resource type="Script" uid="uid://ba8qsvbek5sse" path="res://Scenes/Characters/character.gd" id="1_eu1pv"]
+[ext_resource type="Script" uid="uid://ba8qsvbek5sse" path="res://scenes/Characters/character.gd" id="1_eu1pv"]
 [ext_resource type="Texture2D" uid="uid://bhgna6dbbfckb" path="res://assets/art/characters/shadow.png" id="2_lmtek"]
 [ext_resource type="PackedScene" uid="uid://dhejerna8gg1u" path="res://scenes/colliders/damage_emmiter.tscn" id="3_lmtek"]
+[ext_resource type="PackedScene" uid="uid://vvihcrwdoi5n" path="res://scenes/colliders/damage_receiver.tscn" id="4_7qr7h"]
 
 [node name="character" type="CharacterBody2D"]
 collision_layer = 0
@@ -23,4 +24,10 @@ offset = Vector2(-7, 0)
 
 [node name="DamageEmmiter" parent="." instance=ExtResource("3_lmtek")]
 
+[node name="DamageReceiver" parent="." instance=ExtResource("4_7qr7h")]
+
+[node name="CollateralDamageEmmiter" parent="." instance=ExtResource("3_lmtek")]
+
 [editable path="DamageEmmiter"]
+[editable path="DamageReceiver"]
+[editable path="CollateralDamageEmmiter"]
