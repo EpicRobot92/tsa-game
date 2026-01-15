@@ -51,20 +51,6 @@ position = Vector2(64, 59)
 
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
 position = Vector2(87, 55)
-player = NodePath("../Player")
-
-[node name="BasicEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(15, 61)
-player = NodePath("../Player")
-
-[node name="BasicEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(84, 67)
-player = NodePath("../Player")
-
-[node name="BasicEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(51, 71)
-player = NodePath("../Player")
-
-[node name="BasicEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(101, 57)
+duration_between_hits = 2000
+duration_prep_hit = 500
 player = NodePath("../Player")

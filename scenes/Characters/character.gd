@@ -24,9 +24,9 @@ const GRAVITY := 600.0
 
 
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY}
+enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK}
 
-var anim_attacks := ["punch", "punch_alt", "kick", "roundkick"]
+var anim_attacks := []
 var anim_map : Dictionary = {
 	State.IDLE: "idle",
 	State.WALK: "walk",
@@ -40,6 +40,7 @@ var anim_map : Dictionary = {
 	State.GROUNDED: "grounded",
 	State.DEATH: "grounded",
 	State.FLY: "fly",
+	State.PREP_ATTACK: "idle",
 	
 }
 var attack_combo_index := 0
@@ -63,6 +64,7 @@ func _process(delta: float) -> void:
 	handle_movement()
 	handle_animations()
 	handle_air_time(delta)
+	handle_prep_attack()
 	handle_grounded()
 	handle_death(delta)
 	set_heading()
@@ -81,6 +83,9 @@ func handle_movement():
 	
 		
 func handle_input():
+	pass
+
+func handle_prep_attack() -> void: 
 	pass
 
 func handle_grounded() -> void: 
@@ -140,7 +145,7 @@ func can_jumpkick() -> bool:
 	return state == State.JUMP
 
 func can_get_hurt() -> bool: 
-	return [State.IDLE, State.WALK, State.TAKEOFF, State.JUMP, State.LAND].has(state)
+	return [State.IDLE, State.WALK, State.TAKEOFF, State.JUMP, State.LAND, State.PREP_ATTACK].has(state)
 
 func is_collision_disabled() -> bool: 
 	return [State.GROUNDED, State.DEATH, State.FLY].has(state)
@@ -190,7 +195,7 @@ func on_emit_collateral_damage(receiver : DamageReciever) -> void:
 		receiver.damage_received.emit(0, direction, DamageReciever.HitType.KNOCKDOWN)
 	
 
-func on_wall_hit(wall: AnimatableBody2D) -> void: 
+func on_wall_hit(_wall: AnimatableBody2D) -> void: 
 	state = State.FALL
 	height_speed = knockdown_intensity
 	velocity = -velocity / 2.0

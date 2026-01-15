@@ -3,6 +3,10 @@ extends Character
 
 @onready var enemy_slots: Array = $EnemySlots.get_children()
 
+func _ready() -> void:
+	super._ready()
+	anim_attacks = ["punch", "punch_alt", "kick", "roundkick"]
+
 
 func handle_input() -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
