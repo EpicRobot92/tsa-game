@@ -20,5 +20,5 @@ func spawn_projectile(
 	else:
 		p.setup_direction(dir)
 
-	get_tree().current_scene.add_child(p)
+	get_tree().current_scene.get_node("ActorsContainer").add_child(p)
 	return p
