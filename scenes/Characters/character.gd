@@ -186,6 +186,8 @@ func on_emit_damage(receiver: DamageReciever) -> void:
 		hit_type = DamageReciever.HitType.POWER
 		current_damage = damage_power
 		
+		
+		
 	receiver.damage_received.emit(current_damage, direction, hit_type)
 	is_last_hit_successful = true
 	

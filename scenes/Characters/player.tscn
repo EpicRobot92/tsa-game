@@ -1,8 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://cixs4qvhlhbrj"]
+[gd_scene load_steps=51 format=3 uid="uid://cixs4qvhlhbrj"]
 
 [ext_resource type="PackedScene" uid="uid://cen0t6j1l87wf" path="res://scenes/Characters/character.tscn" id="1_3etf2"]
 [ext_resource type="Script" uid="uid://bvokebpuv1yyh" path="res://scenes/Characters/player.gd" id="2_8iw34"]
 [ext_resource type="Texture2D" uid="uid://dbnl2fqaygfbb" path="res://assets/art/characters/player.png" id="2_40svl"]
+[ext_resource type="PackedScene" uid="uid://bf74djquxx3t5" path="res://scenes/Projectiles/normal_nova_projectile.tscn" id="3_5vcpl"]
 [ext_resource type="PackedScene" uid="uid://dgcdo0kpl53ny" path="res://scenes/Characters/enemy_slot.tscn" id="4_7xbc7"]
 [ext_resource type="Texture2D" uid="uid://drvdngh0h2ma" path="res://assets/art/characters/enemy_punk.png" id="4_ipnkg"]
 
@@ -1217,6 +1218,7 @@ collision_layer = 2
 collision_mask = 141
 script = ExtResource("2_8iw34")
 swap_cooldown = 500
+nova_projectile_scene = ExtResource("3_5vcpl")
 can_respawn = true
 damage = 4
 damage_power = 6
@@ -1227,7 +1229,6 @@ max_health = 30
 speed = 35.0
 
 [node name="EcliptioVisual" type="Node2D" parent="." index="1"]
-visible = false
 
 [node name="CharacterSprite" type="Sprite2D" parent="EcliptioVisual" index="0"]
 position = Vector2(-1, 0)

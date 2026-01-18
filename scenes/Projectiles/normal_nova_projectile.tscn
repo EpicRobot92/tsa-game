@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf74djquxx3t5"]
+
+[ext_resource type="PackedScene" uid="uid://6mmy15acwjck" path="res://utils/projectile.tscn" id="1_5djnr"]
+[ext_resource type="Texture2D" uid="uid://iwm3mmc3rpe0" path="res://assets/art/props/knife.png" id="2_jwk0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwk0w"]
+size = Vector2(20, 8)
+
+[node name="Normal_Nova_Projectile" instance=ExtResource("1_5djnr")]
+collision_layer = 0
+collision_mask = 32
+damage = 50
+target_offset = Vector2(0, -10)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_jwk0w")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_jwk0w")
