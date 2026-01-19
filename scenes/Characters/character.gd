@@ -163,7 +163,6 @@ func on_land_complete() -> void:
 	
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType) -> void:
 	if can_get_hurt():
-		print(str(amount))
 		current_health = clamp(current_health - amount, 0, max_health)
 		if current_health == 0 or hit_type == DamageReciever.HitType.KNOCKDOWN: 
 			state = State.FALL

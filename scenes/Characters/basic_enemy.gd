@@ -56,7 +56,6 @@ func set_heading() -> void: ## Enemy always Faces the Player
 		heading = Vector2.RIGHT
 
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType) -> void:
-	print(amount)
 	super.on_receive_damage(amount, direction, hit_type)
 	if current_health == 0: 
 		player.free_slot(self)

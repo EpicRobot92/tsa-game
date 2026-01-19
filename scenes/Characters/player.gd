@@ -86,11 +86,30 @@ func get_random_enemy_prefer_facing() -> Node2D:
 	return preferred[randi() % preferred.size()]
 
 
-func fire_nova_shot(enemy: Node2D, beat_quality: float) -> void:
+func fire_nova_shot(enemy: Node2D) -> void:
 	# Example scaling:
 	# 1.0 = perfect, 0.7 = good, 0.4 = meh
+	var beat_quality := 0.9
+	var beat := BeatManager.get_beat_result()
+
+	match int(beat["grade"]):
+		BeatManager.BeatGrade.PERFECT:
+			beat_quality = 2
+			print("PERFECT")
+		BeatManager.BeatGrade.GOOD:
+			beat_quality = 1.1
+			print("GOOD")
+		BeatManager.BeatGrade.OKAY:
+			beat_quality = 1.2
+			print("OKAY")
+		_:
+			beat_quality = 0.5
+			print("BAD")
+
+	
 	var base := 2
 	var dmg := int(round(base * beat_quality))
+	
 
 	EntityManager.spawn_projectile(
 		nova_projectile_scene,
@@ -116,7 +135,9 @@ func handle_input() -> void:
 	if can_attack() and current_twin == Twin.NOVA and Input.is_action_just_pressed("attack"):
 			var enemy := get_random_enemy_prefer_facing() 
 			if enemy:
-				fire_nova_shot(enemy, 0.8)
+				state = State.ATTACK
+				fire_nova_shot(enemy)
+				
 
 	if can_jump() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("jump"):
 		state = State.TAKEOFF
