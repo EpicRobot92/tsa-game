@@ -9,6 +9,8 @@ size = Vector2(20, 8)
 [node name="Normal_Nova_Projectile" instance=ExtResource("1_5djnr")]
 collision_layer = 0
 collision_mask = 32
+projectile_type = 1
+speed = 20.0
 damage = 50
 target_offset = Vector2(0, -10)
 

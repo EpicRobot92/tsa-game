@@ -10,7 +10,11 @@ enum Twin { ECLIPTIO, NOVA }
 @export var swap_cooldown := 500
 @export var nova_projectile_scene: PackedScene
 
-var current_twin := Twin.ECLIPTIO
+signal twin_swapped(new_twin: Twin)
+
+
+
+@export var current_twin := Twin.ECLIPTIO
 var active_visual: Node2D
 
 var time_since_swapped = Time.get_ticks_msec()
@@ -42,6 +46,7 @@ func set_active_visual(v: Node2D) -> void:
 ## swaps the twin and plays the current state
 func swap_twin():
 	current_twin = Twin.NOVA if current_twin == Twin.ECLIPTIO else Twin.ECLIPTIO
+	emit_signal("twin_swapped", current_twin)
 	set_active_visual(
 		nova_visual if current_twin == Twin.NOVA else ecliptio_visual
 	)
@@ -87,37 +92,62 @@ func get_random_enemy_prefer_facing() -> Node2D:
 
 
 func fire_nova_shot(enemy: Node2D) -> void:
-	# Example scaling:
-	# 1.0 = perfect, 0.7 = good, 0.4 = meh
-	var beat_quality := 0.9
 	var beat := BeatManager.get_beat_result()
 
+	 #DAMAGE SCALING 
+	var dmg_mult := 1.0
 	match int(beat["grade"]):
-		BeatManager.BeatGrade.PERFECT:
-			beat_quality = 2
-			print("PERFECT")
-		BeatManager.BeatGrade.GOOD:
-			beat_quality = 1.1
-			print("GOOD")
-		BeatManager.BeatGrade.OKAY:
-			beat_quality = 1.2
-			print("OKAY")
-		_:
-			beat_quality = 0.5
-			print("BAD")
+		BeatManager.BeatGrade.PERFECT: dmg_mult = 2.0
+		BeatManager.BeatGrade.GOOD:    dmg_mult = 1.3
+		BeatManager.BeatGrade.OKAY:    dmg_mult = 1.0
+		_:                             dmg_mult = 0.6
 
-	
-	var base := 2
-	var dmg := int(round(base * beat_quality))
-	
+	var base_damage := 2
+	var dmg := int(round(base_damage * dmg_mult))
 
+	#SPEED SCALING
+	var speed_mult := 1.0
+	match int(beat["grade"]):
+		BeatManager.BeatGrade.PERFECT: 
+			speed_mult = 1.6
+			print("Perfect")
+		BeatManager.BeatGrade.GOOD:    
+			speed_mult = 1.3
+			print("Good")
+		BeatManager.BeatGrade.OKAY:    
+			speed_mult = 1.0
+			print("Okay")
+		_:                             
+			speed_mult = 0.8
+			print("Bad")
+
+	var base_speed := 100.0
+	var proj_speed := base_speed * speed_mult
+
+	#KNOCKBACK
+	var kb_mult := 1.0
+	match int(beat["grade"]):
+		BeatManager.BeatGrade.PERFECT: kb_mult = 1.8
+		BeatManager.BeatGrade.GOOD:    kb_mult = 1.3
+		BeatManager.BeatGrade.OKAY:    kb_mult = 1.0
+		_:                             kb_mult = 0.6
+
+	var base_kb := 220.0
+	var kb := base_kb * kb_mult
+
+	# Spawn projectile with configurationnnss!
 	EntityManager.spawn_projectile(
 		nova_projectile_scene,
 		global_position,
 		heading,
 		enemy,
-		{ "damage": dmg }
+		{
+			"damage": dmg,
+			"speed": proj_speed,
+			"knockback": kb
+		}
 	)
+
 
 
 

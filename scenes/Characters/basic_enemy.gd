@@ -5,6 +5,7 @@ extends Character
 @export var duration_prep_hit : int
 @export var player :Player
 
+
 var player_slot : EnemySlot = null
 var time_since_last_hit := Time.get_ticks_msec()
 var time_since_prep_hit := Time.get_ticks_msec()
@@ -36,6 +37,14 @@ func handle_prep_attack() -> void:
 		state = State.ATTACK
 		anim_attacks.shuffle()
 	
+func handle_grounded() -> void: 
+	if state == State.GROUNDED and (Time.get_ticks_msec() - time_since_grounded > duration_grounded):
+		if current_health == 0: 
+			state = State.DEATH
+		else: 
+			state = State.LAND
+			player.free_slot(self)
+			player_slot = null
 
 func is_player_within_range() -> bool: 
 	return (player_slot.global_position - global_position).length() < 1
@@ -55,7 +64,7 @@ func set_heading() -> void: ## Enemy always Faces the Player
 	else: 
 		heading = Vector2.RIGHT
 
-func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType) -> void:
-	super.on_receive_damage(amount, direction, hit_type)
+func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
+	super.on_receive_damage(amount, direction, hit_type, knockback)
 	if current_health == 0: 
 		player.free_slot(self)

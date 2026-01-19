@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvvksksfq18q6"]
+
+[ext_resource type="Script" uid="uid://da0hlgh1p3u45" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bcxdo2y7qettp" path="res://assets/art/ui/menu/MenuButtons/Start/UnSelected.png" id="3_8ln24"]
+[ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://ck3mda48d6f6y" path="res://assets/art/ui/menu/MenuButtons/Start/Highlight.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://vbo6it6eym3r" path="res://assets/art/ui/menu/MenuButtons/Tutorial/UnSelected.png" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://bd7vs6am8yq4a" path="res://assets/art/ui/menu/MenuButtons/Tutorial/Highlight.png" id="6_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://c4mlolnsjarto" path="res://assets/art/ui/menu/MenuButtons/Credits/UnSelected.png" id="7_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://cppby874k87gp" path="res://assets/art/ui/menu/MenuButtons/Credits/Highlight.png" id="8_flqon"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_l6cm7")
+
+[node name="button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 39.0
+offset_top = 18.0
+offset_right = 179.0
+offset_bottom = 139.0
+
+[node name="Start" type="TextureButton" parent="button_manager"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 58.0
+texture_normal = ExtResource("3_8ln24")
+texture_pressed = ExtResource("3_wu84c")
+texture_hover = ExtResource("3_wu84c")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Credits" type="TextureButton" parent="button_manager"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 86.0
+offset_right = 134.0
+offset_bottom = 115.0
+texture_normal = ExtResource("7_lgwnu")
+texture_pressed = ExtResource("8_flqon")
+texture_hover = ExtResource("8_flqon")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Tutorial" type="TextureButton" parent="button_manager"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 58.0
+offset_right = 128.0
+offset_bottom = 85.0
+texture_normal = ExtResource("5_jk1qb")
+texture_pressed = ExtResource("6_5dd4i")
+texture_hover = ExtResource("6_5dd4i")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="fade_transition" parent="." instance=ExtResource("2_ekxnf")]
+visible = false
+
+[node name="fade_timer" type="Timer" parent="fade_transition"]
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_bqqt6")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button_manager/Credits" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button_manager/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="timeout" from="fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]

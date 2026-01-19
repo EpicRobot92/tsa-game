@@ -13,6 +13,10 @@ const GRAVITY := 600.0
 @export var knockdown_intensity : float
 @export var max_health : int
 @export var speed : float
+@export var knockback_resistance: float = 1.0 # 0.7 heavy, 1.3 light
+
+
+
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -161,39 +165,46 @@ func on_takeoff_complete() -> void:
 func on_land_complete() -> void:
 	state = State.IDLE
 	
-func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType) -> void:
+func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
 	if can_get_hurt():
 		current_health = clamp(current_health - amount, 0, max_health)
-		if current_health == 0 or hit_type == DamageReciever.HitType.KNOCKDOWN: 
+
+		
+		var kb := knockback
+
+		if current_health == 0 or hit_type == DamageReciever.HitType.KNOCKDOWN:
 			state = State.FALL
 			height_speed = knockdown_intensity
-			velocity = direction * knockback_intensity
-		elif hit_type == DamageReciever.HitType.POWER: 
+			velocity = direction * kb * knockback_resistance
+		elif hit_type == DamageReciever.HitType.POWER:
 			state = State.FLY
 			velocity = direction * flight_speed
 		else:
 			state = State.HURT
-			velocity = direction * knockback_intensity
+			velocity = direction * kb * knockback_resistance
 
 func on_emit_damage(receiver: DamageReciever) -> void:
 	var hit_type := DamageReciever.HitType.NORMAL
 	var direction := Vector2.LEFT if receiver.global_position.x < global_position.x else Vector2.RIGHT
 	var current_damage := damage
-	if state == State.JUMPKICK: 
+
+	if state == State.JUMPKICK:
 		hit_type = DamageReciever.HitType.KNOCKDOWN
-	if attack_combo_index == anim_attacks.size() - 1: 
+
+	if attack_combo_index == anim_attacks.size() - 1:
 		hit_type = DamageReciever.HitType.POWER
 		current_damage = damage_power
-		
-		
-		
-	receiver.damage_received.emit(current_damage, direction, hit_type)
+
+	# character sends knockback :D
+	receiver.damage_received.emit(current_damage, direction, hit_type, knockback_intensity)
 	is_last_hit_successful = true
+
 	
 func on_emit_collateral_damage(receiver : DamageReciever) -> void: 
 	if receiver != damage_receiver: 
 		var direction := Vector2.LEFT if receiver.global_position.x < global_position.x else Vector2.RIGHT
-		receiver.damage_received.emit(0, direction, DamageReciever.HitType.KNOCKDOWN)
+		receiver.damage_received.emit(0, direction, DamageReciever.HitType.KNOCKDOWN, knockback_intensity)
+
 	
 
 func on_wall_hit(_wall: AnimatableBody2D) -> void: 

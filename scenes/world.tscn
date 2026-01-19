@@ -1,23 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://curm05ilc087u"]
+[gd_scene load_steps=10 format=3 uid="uid://curm05ilc087u"]
 
 [ext_resource type="Script" uid="uid://ckib81b7rrap" path="res://scenes/world.gd" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://cixs4qvhlhbrj" path="res://scenes/Characters/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://cah2djbdefnx8" path="res://scenes/Props/barrel.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="5_71j4m"]
-[ext_resource type="AudioStream" uid="uid://ctqqph4nkquk" path="res://assets/music/Gameplay1.mp3" id="6_i7141"]
+[ext_resource type="AudioStream" uid="uid://cis1oqkddcaon" path="res://assets/music/gameplay1(3).mp3" id="6_4mrxx"]
 [ext_resource type="AudioStream" uid="uid://dihju6yeyh4rd" path="res://assets/music/Novametrnome(118 BPM).mp3" id="7_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="8_4mrxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wyf3"]
-size = Vector2(6, 64)
+size = Vector2(6, 135)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_4wyf3")
 
 [node name="Stage" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(-30, -1)
+scale = Vector2(2, 2)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(50, 32)
+offset = Vector2(40, 35)
 
 [node name="InvisibleWalls" type="Node2D" parent="Camera"]
 position = Vector2(-50, -32)
@@ -28,7 +32,7 @@ collision_mask = 0
 sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/LeftWall"]
-position = Vector2(0, 32)
+position = Vector2(-27, 67)
 shape = SubResource("RectangleShape2D_4wyf3")
 
 [node name="RightWall" type="AnimatableBody2D" parent="Camera/InvisibleWalls"]
@@ -37,40 +41,26 @@ collision_mask = 0
 sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/RightWall"]
-position = Vector2(100, 32)
+position = Vector2(207, 66.5)
 shape = SubResource("RectangleShape2D_4wyf3")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_rwgxs")]
-position = Vector2(40, 51)
+position = Vector2(26, 95)
+scale = Vector2(2, 2)
+current_twin = 0
 
 [node name="Props" type="Node2D" parent="ActorsContainer"]
 
 [node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_k0juu")]
-position = Vector2(64, 59)
+position = Vector2(91, 119)
+scale = Vector2(2, 2)
 
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(87, 55)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(21, 64)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(5, 39)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(198, 51)
+position = Vector2(162, 93)
+scale = Vector2(2, 2)
 duration_between_hits = 2000
 duration_prep_hit = 500
 player = NodePath("../Player")
@@ -78,8 +68,17 @@ player = NodePath("../Player")
 [node name="Music" type="Node2D" parent="."]
 
 [node name="GameplaySong" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource("6_i7141")
+stream = ExtResource("6_4mrxx")
 
 [node name="MusicMetronome" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("7_4mrxx")
-volume_db = -13.358
+volume_db = -13.211
+
+[node name="fade_transition" parent="." instance=ExtResource("8_4mrxx")]
+visible = false
+offset_left = -31.0
+offset_top = -2.0
+offset_right = 243.0
+offset_bottom = 142.0
+
+[node name="fade_timer" type="Timer" parent="fade_transition"]
