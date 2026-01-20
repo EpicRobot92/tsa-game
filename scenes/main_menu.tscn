@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvvksksfq18q6"]
+[gd_scene load_steps=12 format=3 uid="uid://cvvksksfq18q6"]
 
 [ext_resource type="Script" uid="uid://da0hlgh1p3u45" path="res://scenes/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bmuv275d51la1" path="res://assets/art/ui/menu/Menubackground.png" id="2_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://bcxdo2y7qettp" path="res://assets/art/ui/menu/MenuButtons/Start/UnSelected.png" id="3_8ln24"]
 [ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="3_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://ck3mda48d6f6y" path="res://assets/art/ui/menu/MenuButtons/Start/Highlight.png" id="3_wu84c"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bd7vs6am8yq4a" path="res://assets/art/ui/menu/MenuButtons/Tutorial/Highlight.png" id="6_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://c4mlolnsjarto" path="res://assets/art/ui/menu/MenuButtons/Credits/UnSelected.png" id="7_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cppby874k87gp" path="res://assets/art/ui/menu/MenuButtons/Credits/Highlight.png" id="8_flqon"]
+[ext_resource type="Texture2D" uid="uid://cou2m55j48vwj" path="res://assets/art/ui/Logos/MINDLESSLogo1.png" id="10_5dd4i"]
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_l6cm7")
@@ -16,44 +18,50 @@ script = ExtResource("1_l6cm7")
 [node name="button_manager" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 39.0
-offset_top = 18.0
-offset_right = 179.0
-offset_bottom = 139.0
+offset_left = 69.0
+offset_top = 4.0
+offset_right = 209.0
+offset_bottom = 125.0
 
-[node name="Start" type="TextureButton" parent="button_manager"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 32.0
-offset_right = 143.0
-offset_bottom = 58.0
-texture_normal = ExtResource("3_8ln24")
-texture_pressed = ExtResource("3_wu84c")
-texture_hover = ExtResource("3_wu84c")
+[node name="Preview" type="Sprite2D" parent="button_manager"]
+position = Vector2(49, 58.000004)
+scale = Vector2(0.8506944, 0.7786459)
+texture = ExtResource("2_lgwnu")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="button_manager"]
+position = Vector2(55.999996, 16.000002)
+scale = Vector2(0.7, 0.7)
+
+[node name="Start" type="TextureButton" parent="button_manager/CanvasGroup"]
+offset_left = 27.142853
+offset_top = 7.1428566
+offset_right = 146.14285
+offset_bottom = 33.142857
+texture_normal = ExtResource("3_wu84c")
+texture_pressed = ExtResource("3_8ln24")
+texture_hover = ExtResource("3_8ln24")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Credits" type="TextureButton" parent="button_manager"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 86.0
-offset_right = 134.0
-offset_bottom = 115.0
-texture_normal = ExtResource("7_lgwnu")
-texture_pressed = ExtResource("8_flqon")
-texture_hover = ExtResource("8_flqon")
+[node name="Credits" type="TextureButton" parent="button_manager/CanvasGroup"]
+offset_left = 37.142864
+offset_top = 102.85713
+offset_right = 139.14287
+offset_bottom = 131.85713
+texture_normal = ExtResource("8_flqon")
+texture_pressed = ExtResource("7_lgwnu")
+texture_hover = ExtResource("7_lgwnu")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Tutorial" type="TextureButton" parent="button_manager"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 58.0
-offset_right = 128.0
-offset_bottom = 85.0
-texture_normal = ExtResource("5_jk1qb")
-texture_pressed = ExtResource("6_5dd4i")
-texture_hover = ExtResource("6_5dd4i")
+[node name="Tutorial" type="TextureButton" parent="button_manager/CanvasGroup"]
+offset_left = 42.857143
+offset_top = 60.000004
+offset_right = 130.85715
+offset_bottom = 87.0
+texture_normal = ExtResource("6_5dd4i")
+texture_pressed = ExtResource("5_jk1qb")
+texture_hover = ExtResource("5_jk1qb")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -69,7 +77,18 @@ stream = ExtResource("3_bqqt6")
 autoplay = true
 parameters/looping = true
 
-[connection signal="pressed" from="button_manager/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="button_manager/Credits" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="button_manager/Tutorial" to="." method="_on_tutorial_pressed"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MindlessLogo1" type="Sprite2D" parent="."]
+position = Vector2(73, 70)
+scale = Vector2(0.78112787, 0.5938895)
+texture = ExtResource("10_5dd4i")
+
+[connection signal="pressed" from="button_manager/CanvasGroup/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button_manager/CanvasGroup/Credits" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button_manager/CanvasGroup/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="timeout" from="fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
