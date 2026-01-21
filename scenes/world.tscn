@@ -48,7 +48,7 @@ shape = SubResource("RectangleShape2D_4wyf3")
 y_sort_enabled = true
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_rwgxs")]
-position = Vector2(26, 95)
+position = Vector2(39, 103)
 scale = Vector2(2, 2)
 current_twin = 0
 
@@ -59,7 +59,42 @@ position = Vector2(91, 119)
 scale = Vector2(2, 2)
 
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(162, 93)
+position = Vector2(168, 112)
+scale = Vector2(2, 2)
+duration_between_hits = 2000
+duration_prep_hit = 500
+player = NodePath("../Player")
+
+[node name="BasicEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
+position = Vector2(200, 80)
+scale = Vector2(2, 2)
+duration_between_hits = 2000
+duration_prep_hit = 500
+player = NodePath("../Player")
+
+[node name="BasicEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
+position = Vector2(260, 117)
+scale = Vector2(2, 2)
+duration_between_hits = 2000
+duration_prep_hit = 500
+player = NodePath("../Player")
+
+[node name="BasicEnemy6" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
+position = Vector2(124, 76)
+scale = Vector2(2, 2)
+duration_between_hits = 2000
+duration_prep_hit = 500
+player = NodePath("../Player")
+
+[node name="BasicEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
+position = Vector2(226, 111)
+scale = Vector2(2, 2)
+duration_between_hits = 2000
+duration_prep_hit = 500
+player = NodePath("../Player")
+
+[node name="BasicEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
+position = Vector2(129, 114)
 scale = Vector2(2, 2)
 duration_between_hits = 2000
 duration_prep_hit = 500
