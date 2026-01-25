@@ -8,6 +8,8 @@ enum Twin { ECLIPTIO, NOVA }
 @onready var ecliptio_visual: Node2D = $EcliptioVisual
 @onready var nova_visual = $NovaVisual
 @export var swap_cooldown := 500
+@export var nova_cooldown := 200
+var time_since_nova_attack : float 
 @export var nova_projectile_scene: PackedScene
 
 signal twin_swapped(new_twin: Twin)
@@ -54,6 +56,10 @@ func swap_twin():
 ## checks if the player can swap by getting the time in-tween last swap and checks if more or equal time has passed since the cooldown and if the state is idle
 func can_swap() -> bool:
 	return true if (Time.get_ticks_msec() - time_since_swapped >= swap_cooldown) and [State.IDLE, State.WALK].has(state) else false
+
+func can_nova_attack() -> bool:
+	return true if (Time.get_ticks_msec() - time_since_nova_attack >= nova_cooldown) and [State.IDLE, State.WALK].has(state) else false
+
 
 ## Gets a random enemy that is on the side the player is facing
 func get_random_enemy_prefer_facing() -> Node2D:
@@ -151,6 +157,7 @@ func fire_nova_shot(enemy: Node2D) -> void:
 
 
 
+
 func handle_input() -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed
@@ -162,11 +169,12 @@ func handle_input() -> void:
 			is_last_hit_successful = false
 		else: 
 			attack_combo_index = 0
-	if can_attack() and current_twin == Twin.NOVA and Input.is_action_just_pressed("attack"):
+	if can_attack() and current_twin == Twin.NOVA and can_nova_attack() and Input.is_action_just_pressed("attack"):
 			var enemy := get_random_enemy_prefer_facing() 
 			if enemy:
 				state = State.ATTACK
 				fire_nova_shot(enemy)
+				time_since_nova_attack = Time.get_ticks_msec()
 				
 
 	if can_jump() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("jump"):

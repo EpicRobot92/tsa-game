@@ -12,6 +12,7 @@ const GRAVITY := 600.0
 @export var knockback_intensity : float
 @export var knockdown_intensity : float
 @export var max_health : int
+@export var type : Type
 @export var speed : float
 @export var knockback_resistance: float = 1.0 # 0.7 heavy, 1.3 light
 
@@ -29,6 +30,7 @@ const GRAVITY := 600.0
 
 
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK}
+enum Type {PLAYER, BASIC_ENEMY}
 
 var anim_attacks := []
 var anim_map : Dictionary = {
@@ -61,7 +63,8 @@ func _ready() -> void:
 	damage_receiver.damage_received.connect(on_receive_damage.bind())
 	collateral_damage_emmiter.area_entered.connect(on_emit_collateral_damage.bind())
 	collateral_damage_emmiter.body_entered.connect(on_wall_hit.bind())
-	current_health = max_health
+	set_health(max_health, type == Character.Type.PLAYER)
+	
 
 func _process(delta: float) -> void:
 	handle_input()
@@ -76,6 +79,8 @@ func _process(delta: float) -> void:
 	character_sprite.position = Vector2.UP * height
 	collision_shape.disabled = is_collision_disabled()
 	move_and_slide()
+	
+	
 	
 
 func handle_movement():
@@ -113,18 +118,25 @@ func handle_animations():
 		animation_player.play(anim_map[state])
 	
 func handle_air_time(delta: float) -> void:
-	if [State.JUMP, State.JUMPKICK, State.FALL].has(state): 
+	## the fix for jump bug
+	if height > 0.0 or [State.JUMP, State.JUMPKICK, State.FALL].has(state):
 		height += height_speed * delta
-		if height < 0: ## if on ground
-			height = 0
-			if state == State.FALL: 
+
+		if height <= 0.0:
+			height = 0.0
+
+			# If we were knocked down, go grounded. orrr we land.
+			if state == State.FALL:
 				state = State.GROUNDED
 				time_since_grounded = Time.get_ticks_msec()
-			else: 
+			else:
 				state = State.LAND
+
+			height_speed = 0.0
 			velocity = Vector2.ZERO
-		else: 
+		else:
 			height_speed -= GRAVITY * delta
+
 			
 func set_heading() -> void: 
 	pass
@@ -167,7 +179,7 @@ func on_land_complete() -> void:
 	
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
 	if can_get_hurt():
-		current_health = clamp(current_health - amount, 0, max_health)
+		set_health(current_health - amount)
 
 		
 		var kb := knockback
@@ -213,4 +225,8 @@ func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	velocity = -velocity / 2.0
 	
 
+func set_health(health: int, emit_signal: bool = true) -> void:
+	current_health = clamp(health, 0, max_health)
+	if emit_signal:
+		DamageManager.health_change.emit(type, current_health, max_health)
 	

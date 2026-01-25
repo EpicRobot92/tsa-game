@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://70l16hiau763"]
+
+[ext_resource type="Texture2D" uid="uid://dfkc6eo5jrgu3" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_2fwl4"]
+[ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
+[ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://UI/healthbar.tscn" id="2_dajm1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dajm1"]
+load_path = "res://.godot/imported/avatar-player.png-88ec7b13db3359f8bbb353bd7a69222e.ctex"
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_e6gg6")
+
+[node name="UIContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyAvatar" type="TextureRect" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_right = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+texture = ExtResource("1_2fwl4")
+stretch_mode = 2
+
+[node name="PlayerAvatar" type="TextureRect" parent="UIContainer"]
+layout_mode = 1
+offset_right = 11.0
+offset_bottom = 11.0
+scale = Vector2(2, 2)
+texture = SubResource("CompressedTexture2D_dajm1")
+stretch_mode = 2
+
+[node name="EnemyHealthBar" parent="UIContainer" instance=ExtResource("2_dajm1")]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 13.0
+offset_right = 218.0
+offset_bottom = 21.0
+is_inverted = true
+
+[node name="WhiteBorder" parent="UIContainer/EnemyHealthBar" index="0"]
+layout_direction = 3
+scale = Vector2(-60, 1)
+
+[node name="ContentBackground" parent="UIContainer/EnemyHealthBar" index="1"]
+layout_direction = 3
+scale = Vector2(-58, 1)
+
+[node name="HealthGaughe" parent="UIContainer/EnemyHealthBar" index="2"]
+layout_direction = 3
+scale = Vector2(-58, 1)
+
+[node name="PlayerHealthBar" parent="UIContainer" instance=ExtResource("2_dajm1")]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 13.0
+offset_right = 83.0
+offset_bottom = 21.0
+
+[editable path="UIContainer/EnemyHealthBar"]

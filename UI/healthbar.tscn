@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu1jjgia0bgeo"]
+
+[ext_resource type="Script" uid="uid://3lcv7oqlpm8x" path="res://UI/healthbar.gd" id="1_udao7"]
+[ext_resource type="Texture2D" uid="uid://bwt3ja3imf13v" path="res://assets/art/ui/healthbar-tick.png" id="2_4vcg3"]
+
+[node name="Healthbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 8.0
+script = ExtResource("1_udao7")
+
+[node name="WhiteBorder" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 9.0
+scale = Vector2(60, 1)
+
+[node name="ContentBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 8.0
+scale = Vector2(58, 1)
+color = Color(0.55596435, 0.09051842, 0.16623712, 1)
+
+[node name="HealthGaughe" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 8.0
+scale = Vector2(58, 1)
+texture = ExtResource("2_4vcg3")

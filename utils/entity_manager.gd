@@ -1,5 +1,15 @@
 extends Node
 
+signal death_enemy(enemy: Character)
+signal spawn_enemy(enemy_data: EnemyData)
+
+const ENEMY_MAP := {
+	Character.Type.BASIC_ENEMY: preload("res://scenes/Characters/basic_enemy.tscn")
+}
+
+
+
+
 func spawn_projectile(
 	projectile_scene: PackedScene,
 	pos: Vector2,

@@ -3,7 +3,7 @@ extends Node
 # Fires when we enter a new beat (0, 1, 2, ...)
 signal beat(beat_index: int)
 
-# Optional: for UI/state
+
 signal song_started
 signal song_stopped
 
@@ -12,7 +12,7 @@ signal song_stopped
 @export var hit_window_sec: float = 0.09
 @export var input_offset_sec: float = 0.0
 
-# If true, restart immediately after the master track ends
+# If true, restart immediately after the master track ends kool right
 @export var loop_songs: bool = true
 
 # === SONGS ===
@@ -59,15 +59,13 @@ func _process(_delta: float) -> void:
 	if current_beat_index != last_beat_index:
 		last_beat_index = current_beat_index
 		emit_signal("beat", current_beat_index)
-		print("beat")
+		#print("beat")
 
 
-# =========================
-# GLOBAL API
-# =========================
 
-# Set multiple players at once (recommended)
-# The first one becomes the master timing track by default.
+
+
+
 func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int = 0) -> void:
 	_disconnect_master_finished()
 
@@ -83,7 +81,7 @@ func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int 
 	_connect_master_finished()
 
 
-# Add a single player (optional helper)
+# Add a single player 
 func add_music_player(p: AudioStreamPlayer, make_master: bool = false) -> void:
 	if p == null:
 		return
@@ -241,12 +239,11 @@ func _on_master_finished() -> void:
 	if loop_songs:
 		start_songs() # restarts immediately
 	else:
-		stop_songs(false) # stop beat emission but don’t force-stop audio (already ended)
+		stop_songs(false) # stop beat emission but don’t force-stop audio 
 
 
-# =========================
-# TIMING HELPERS
-# =========================
+# TIMING HELPER functions
+
 
 func _update_timing() -> void:
 	sec_per_beat = 60.0 / max(bpm, 1.0)

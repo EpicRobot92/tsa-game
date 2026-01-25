@@ -9,6 +9,7 @@ extends Character
 var player_slot : EnemySlot = null
 var time_since_last_hit := Time.get_ticks_msec()
 var time_since_prep_hit := Time.get_ticks_msec()
+var death_emitted := false
 
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _ready() -> void:
 	anim_attacks = ["punch", "punch_alt"]
 
 func handle_input():
+	
+
 	if player != null and can_move(): 
 		
 		if player_slot == null: 
@@ -49,6 +52,7 @@ func handle_grounded() -> void:
 func is_player_within_range() -> bool: 
 	return (player_slot.global_position - global_position).length() < 1
 
+
 func can_attack():
 	if Time.get_ticks_msec() - time_since_last_hit < duration_between_hits:
 		return false
@@ -66,5 +70,9 @@ func set_heading() -> void: ## Enemy always Faces the Player
 
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
 	super.on_receive_damage(amount, direction, hit_type, knockback)
-	if current_health == 0: 
+	if current_health == 0 and not death_emitted: 
+		death_emitted = true
 		player.free_slot(self)
+		EntityManager.death_enemy.emit(self)
+		damage_receiver.monitoring = false
+		

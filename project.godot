@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 EntityManager="*res://utils/entity_manager.gd"
 BeatManager="*res://scenes/Scripts/BeatManager.gd"
+StageManager="*res://utils/stage_manager.gd"
+DamageManager="*res://utils/damage_manager.gd"
 
 [display]
 

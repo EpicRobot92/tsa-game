@@ -1,13 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://curm05ilc087u"]
+[gd_scene load_steps=9 format=3 uid="uid://curm05ilc087u"]
 
 [ext_resource type="Script" uid="uid://ckib81b7rrap" path="res://scenes/world.gd" id="1_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_nnsk1"]
-[ext_resource type="PackedScene" uid="uid://cixs4qvhlhbrj" path="res://scenes/Characters/player.tscn" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://sigkf6a0rlxy" path="res://scenes/actors_container.gd" id="3_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://cah2djbdefnx8" path="res://scenes/Props/barrel.tscn" id="4_k0juu"]
-[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="5_71j4m"]
 [ext_resource type="AudioStream" uid="uid://cis1oqkddcaon" path="res://assets/music/gameplay1(3).mp3" id="6_4mrxx"]
 [ext_resource type="AudioStream" uid="uid://dihju6yeyh4rd" path="res://assets/music/Novametrnome(118 BPM).mp3" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="8_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://70l16hiau763" path="res://UI/ui.tscn" id="9_7r4gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wyf3"]
 size = Vector2(6, 135)
@@ -15,13 +14,16 @@ size = Vector2(6, 135)
 [node name="World" type="Node2D"]
 script = ExtResource("1_4wyf3")
 
-[node name="Stage" parent="." instance=ExtResource("1_nnsk1")]
-position = Vector2(-30, -1)
-scale = Vector2(2, 2)
+[node name="UI" parent="." instance=ExtResource("9_7r4gi")]
+duration_healthbar_visible = 1000
+
+[node name="StageContainer" type="Node2D" parent="."]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(50, 32)
 offset = Vector2(40, 35)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
 [node name="InvisibleWalls" type="Node2D" parent="Camera"]
 position = Vector2(-50, -32)
@@ -44,61 +46,16 @@ sync_to_physics = false
 position = Vector2(207, 66.5)
 shape = SubResource("RectangleShape2D_4wyf3")
 
-[node name="ActorsContainer" type="Node2D" parent="."]
+[node name="ActorsContainer" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 y_sort_enabled = true
-
-[node name="Player" parent="ActorsContainer" instance=ExtResource("2_rwgxs")]
-position = Vector2(39, 103)
-scale = Vector2(2, 2)
-current_twin = 0
+script = ExtResource("3_7r4gi")
+player = NodePath("")
 
 [node name="Props" type="Node2D" parent="ActorsContainer"]
 
 [node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_k0juu")]
-position = Vector2(91, 119)
+position = Vector2(295, 97)
 scale = Vector2(2, 2)
-
-[node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(168, 112)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy2" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(200, 80)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy5" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(260, 117)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy6" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(124, 76)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy3" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(226, 111)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
-
-[node name="BasicEnemy4" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_71j4m")]
-position = Vector2(129, 114)
-scale = Vector2(2, 2)
-duration_between_hits = 2000
-duration_prep_hit = 500
-player = NodePath("../Player")
 
 [node name="Music" type="Node2D" parent="."]
 
@@ -117,3 +74,5 @@ offset_right = 243.0
 offset_bottom = 142.0
 
 [node name="fade_timer" type="Timer" parent="fade_transition"]
+
+[connection signal="timeout" from="fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
