@@ -54,13 +54,22 @@ _data = {
 &"RESET": SubResource("Animation_6uw4y")
 }
 
-[node name="fade_transition" type="ColorRect"]
+[node name="fade_transitionUI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="fade_transition" type="ColorRect" parent="Control"]
+layout_mode = 0
 offset_right = 242.0
 offset_bottom = 137.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_6uw4y")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/fade_transition"]
 libraries = {
 &"": SubResource("AnimationLibrary_vxaoj")
 }

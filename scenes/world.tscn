@@ -14,6 +14,11 @@ size = Vector2(6, 135)
 [node name="World" type="Node2D"]
 script = ExtResource("1_4wyf3")
 
+[node name="fade_transitionUI" parent="." instance=ExtResource("8_4mrxx")]
+visible = false
+
+[node name="fade_timer" type="Timer" parent="fade_transitionUI"]
+
 [node name="UI" parent="." instance=ExtResource("9_7r4gi")]
 duration_healthbar_visible = 1000
 
@@ -46,10 +51,9 @@ sync_to_physics = false
 position = Vector2(207, 66.5)
 shape = SubResource("RectangleShape2D_4wyf3")
 
-[node name="ActorsContainer" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="ActorsContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("3_7r4gi")
-player = NodePath("")
 
 [node name="Props" type="Node2D" parent="ActorsContainer"]
 
@@ -66,13 +70,6 @@ stream = ExtResource("6_4mrxx")
 stream = ExtResource("7_4mrxx")
 volume_db = -13.211
 
-[node name="fade_transition" parent="." instance=ExtResource("8_4mrxx")]
-visible = false
-offset_left = -31.0
-offset_top = -2.0
-offset_right = 243.0
-offset_bottom = 142.0
+[connection signal="timeout" from="fade_transitionUI/fade_timer" to="." method="_on_fade_timer_timeout"]
 
-[node name="fade_timer" type="Timer" parent="fade_transition"]
-
-[connection signal="timeout" from="fade_transition/fade_timer" to="." method="_on_fade_timer_timeout"]
+[editable path="fade_transitionUI"]

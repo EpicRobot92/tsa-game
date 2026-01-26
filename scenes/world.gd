@@ -7,10 +7,9 @@ const STAGE_PREFABS := [
 	preload("res://scenes/stage/stage_2.tscn"),
 ]
 @onready var actors_container: Node2D = $ActorsContainer
-@onready var playerchar: CharacterBody2D = $ActorsContainer/Player
 @onready var camera: Camera2D = $Camera
-@onready var fade_transition: fade_transition = $fade_transition
-@onready var fade_timer: Timer = $fade_transition/fade_timer
+@onready var fade_transition: fade_transition = $fade_transitionUI/Control/fade_transition
+@onready var fade_timer: Timer = $fade_transitionUI/fade_timer
 @onready var stage_container: Node2D = $StageContainer
 
 

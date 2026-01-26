@@ -22,6 +22,10 @@ BeatManager="*res://scenes/Scripts/BeatManager.gd"
 StageManager="*res://utils/stage_manager.gd"
 DamageManager="*res://utils/damage_manager.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=240

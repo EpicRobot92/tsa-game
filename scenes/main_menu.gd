@@ -1,10 +1,14 @@
 extends Node2D
-@onready var fade_trans: fade_transition = $fade_transition
-@onready var fade_timer: Timer = $fade_transition/fade_timer
+@onready var fade_trans: fade_transition = $fade_transitionUI/Control/fade_transition
+@onready var fade_timer: Timer = $fade_transitionUI/fade_timer
+
 
 
 
 var button_type = null
+
+func _ready() -> void:
+	fade_trans.idle()
 
 func _on_start_pressed() -> void:
 	button_type = "start"

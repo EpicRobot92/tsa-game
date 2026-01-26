@@ -225,8 +225,8 @@ func on_wall_hit(_wall: AnimatableBody2D) -> void:
 	velocity = -velocity / 2.0
 	
 
-func set_health(health: int, emit_signal: bool = true) -> void:
+func set_health(health: int, emit_sig: bool = true) -> void:
 	current_health = clamp(health, 0, max_health)
-	if emit_signal:
+	if emit_sig:
 		DamageManager.health_change.emit(type, current_health, max_health)
 	
