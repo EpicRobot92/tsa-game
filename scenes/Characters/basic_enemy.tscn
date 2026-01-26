@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://c0cvkhobauf70"]
 
 [ext_resource type="PackedScene" uid="uid://cen0t6j1l87wf" path="res://scenes/Characters/character.tscn" id="1_ivafu"]
-[ext_resource type="Texture2D" uid="uid://drvdngh0h2ma" path="res://assets/art/characters/enemy_punk.png" id="2_avbxs"]
 [ext_resource type="Script" uid="uid://ta52vvc4yvbq" path="res://scenes/Characters/basic_enemy.gd" id="2_gfb1d"]
+[ext_resource type="Texture2D" uid="uid://bli6warnuumel" path="res://assets/art/OGCharacters/EnemySprite.png" id="3_avbxs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avbxs"]
 radius = 2.0
@@ -118,7 +118,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [52]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_erl5m"]
@@ -135,7 +135,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [40, 41, 42]
+"values": [9, 10, 11]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -185,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [70]
+"values": [0]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -205,7 +205,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_sa1ms"]
 resource_name = "punch"
 length = 0.2
-step = 0.1
+step = 0.005
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -213,10 +213,10 @@ tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.07, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [21, 22]
+"values": [6, 7, 8]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -271,7 +271,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [31, 32]
+"values": [6, 8]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -304,7 +304,7 @@ tracks/2/keys = {
 resource_name = "walk"
 length = 0.8
 loop_mode = 1
-step = 0.1
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -312,10 +312,10 @@ tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.784),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13, 14, 15, 16]
+"values": [2, 3, 4, 5, 2, 3, 4, 5, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfb1d"]
@@ -358,11 +358,11 @@ type = 1
 speed = 25.0
 
 [node name="CharacterSprite" parent="." index="1"]
-texture = ExtResource("2_avbxs")
+texture = ExtResource("3_avbxs")
 centered = false
-offset = Vector2(-24, -48)
-hframes = 10
-vframes = 10
+offset = Vector2(-15, -28)
+hframes = 4
+vframes = 4
 
 [node name="CollisionShape2D" parent="." index="2"]
 rotation = 1.5707964
@@ -386,14 +386,14 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="DamageReceiver" index="0"]
-position = Vector2(1, -20)
+position = Vector2(0.5, -19.5)
 shape = SubResource("RectangleShape2D_0lnlb")
 
 [node name="CollateralDamageEmmiter" parent="." index="6"]
 collision_mask = 160
 
 [node name="CollisionShape2D" parent="CollateralDamageEmmiter" index="0"]
-position = Vector2(0, -10)
+position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_avbxs")
 
 [editable path="DamageEmmiter"]
