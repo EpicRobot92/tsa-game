@@ -73,3 +73,7 @@ script = ExtResource("1_6uw4y")
 libraries = {
 &"": SubResource("AnimationLibrary_vxaoj")
 }
+
+[node name="Timer" type="Timer" parent="Control/fade_transition"]
+
+[connection signal="timeout" from="Control/fade_transition/Timer" to="Control/fade_transition" method="_on_timer_timeout"]

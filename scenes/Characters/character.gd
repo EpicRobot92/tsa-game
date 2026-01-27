@@ -4,6 +4,7 @@ extends CharacterBody2D
 const GRAVITY := 600.0
 
 @export var can_respawn : bool
+@export var can_combo : bool
 @export var damage : int
 @export var damage_power : int
 @export var duration_grounded : float 
@@ -30,7 +31,7 @@ const GRAVITY := 600.0
 
 
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK}
-enum Type {PLAYER, BASIC_ENEMY}
+enum Type {PLAYER, BASIC_ENEMY, DASH_ENEMY}
 
 var anim_attacks := []
 var anim_map : Dictionary = {
@@ -149,7 +150,7 @@ func flip_sprites():
 		damage_emmiter.scale.x = -1
 		
 func can_move(): 
-	return state == State.IDLE or state == State.WALK
+	return state == State.IDLE or state == State.WALK and state != State.GROUNDED
 		
 func can_attack():
 	return state == State.IDLE or state == State.WALK
@@ -203,7 +204,8 @@ func on_emit_damage(receiver: DamageReciever) -> void:
 	if state == State.JUMPKICK:
 		hit_type = DamageReciever.HitType.KNOCKDOWN
 
-	if attack_combo_index == anim_attacks.size() - 1:
+	# Only do POWER if there are multiple attacks in the combo and we're on the last hit
+	if anim_attacks.size() > 1 and attack_combo_index == anim_attacks.size() - 1 and can_combo == true:
 		hit_type = DamageReciever.HitType.POWER
 		current_damage = damage_power
 

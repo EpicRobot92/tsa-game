@@ -6,7 +6,7 @@
 size = Vector2(8, 135)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bypk3"]
-size = Vector2(240, 135)
+size = Vector2(241, 134.5)
 
 [node name="Checkpoint" type="Node2D"]
 script = ExtResource("1_bypk3")

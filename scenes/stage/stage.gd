@@ -4,6 +4,8 @@ extends Node2D
 @onready var checkpoints: Node2D = $Checkpoints
 
 
+var music_metronme_vol : float
+
 @onready var player_spawn_location: Node2D = $PlayerSpawnLocation
 
 func _init() -> void:

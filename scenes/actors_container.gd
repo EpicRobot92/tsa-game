@@ -4,7 +4,8 @@ extends Node2D
 @export var player : Player
 
 const ENEMY_MAP := {
-	Character.Type.BASIC_ENEMY: preload("res://scenes/Characters/basic_enemy.tscn")
+	Character.Type.BASIC_ENEMY: preload("res://scenes/Characters/basic_enemy.tscn"),
+	Character.Type.DASH_ENEMY: preload("res://scenes/Characters/dash_enemy.tscn"),
 }
 
 func _ready() -> void:

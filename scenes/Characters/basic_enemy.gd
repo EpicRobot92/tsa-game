@@ -14,7 +14,7 @@ var death_emitted := false
 
 func _ready() -> void:
 	super._ready()
-	anim_attacks = ["punch", "punch_alt"]
+	anim_attacks = ["punch"]
 
 func handle_input():
 	
@@ -28,7 +28,7 @@ func handle_input():
 			var direction := (player_slot.global_position - global_position).normalized()
 			if is_player_within_range():
 				velocity = Vector2.ZERO
-				if can_attack(): 
+				if can_attack() and player.current_health > 0: 
 					state = State.PREP_ATTACK
 					time_since_last_hit = Time.get_ticks_msec()
 					time_since_prep_hit = Time.get_ticks_msec()

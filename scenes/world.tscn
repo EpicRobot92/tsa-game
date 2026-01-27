@@ -19,16 +19,17 @@ visible = false
 
 [node name="fade_timer" type="Timer" parent="fade_transitionUI"]
 
+[node name="Menu_Fade_Timer" type="Timer" parent="."]
+
 [node name="UI" parent="." instance=ExtResource("9_7r4gi")]
 duration_healthbar_visible = 1000
 
 [node name="StageContainer" type="Node2D" parent="."]
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(50, 32)
+position = Vector2(49, 32)
 offset = Vector2(40, 35)
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
+position_smoothing_speed = 1.0
 
 [node name="InvisibleWalls" type="Node2D" parent="Camera"]
 position = Vector2(-50, -32)
@@ -71,5 +72,6 @@ stream = ExtResource("7_4mrxx")
 volume_db = -13.211
 
 [connection signal="timeout" from="fade_transitionUI/fade_timer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Menu_Fade_Timer" to="." method="_on_menu_fade_timer_timeout"]
 
 [editable path="fade_transitionUI"]

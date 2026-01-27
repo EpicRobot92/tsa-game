@@ -1,44 +1,136 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnlhohoiheox4"]
+[gd_scene load_steps=14 format=3 uid="uid://dnlhohoiheox4"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_5x0c6"]
-[ext_resource type="Texture2D" uid="uid://qn0v65352fuv" path="res://assets/art/backgrounds/street-background.png" id="2_8hh8l"]
+[ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="2_rcf3f"]
 [ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="3_ay8mk"]
+[ext_resource type="Texture2D" uid="uid://dawqd346wq36l" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/middle.png" id="3_fts0w"]
+[ext_resource type="Texture2D" uid="uid://bdosmnant6544" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/back.png" id="3_rlibl"]
 [ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="4_rcf3f"]
+[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/Characters/dash_enemy.tscn" id="6_xojio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf3f"]
+size = Vector2(26, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlibl"]
+size = Vector2(40, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xojio"]
+size = Vector2(3, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fts0w"]
+size = Vector2(141.25, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xojio"]
+a = Vector2(-59.625, -11)
+b = Vector2(0.375, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xy77r"]
+a = Vector2(-59.625, -11)
+b = Vector2(-135, 9)
 
 [node name="Stage-01" instance=ExtResource("1_5x0c6")]
 
-[node name="MainBackground" parent="Backgrounds" index="0"]
-scale = Vector2(2, 2)
-texture = ExtResource("2_8hh8l")
+[node name="BackLayer" type="Parallax2D" parent="Backgrounds" index="0"]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(240, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Backgrounds/BackLayer" index="0"]
+offset_right = 240.0
+offset_bottom = 272.0
+texture = ExtResource("3_rlibl")
+stretch_mode = 1
+
+[node name="BackFarlayer" type="Parallax2D" parent="Backgrounds" index="1"]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(240, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Backgrounds/BackFarlayer" index="0"]
+offset_right = 240.0
+offset_bottom = 272.0
+texture = ExtResource("3_fts0w")
+stretch_mode = 1
+
+[node name="MainBackground" parent="Backgrounds" index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rcf3f")
+
+[node name="ForegroundEmpty" type="Sprite2D" parent="Backgrounds" index="3"]
+position = Vector2(-172, 68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rcf3f")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
-position = Vector2(200, 54)
+position = Vector2(13, 95.5)
+shape = SubResource("RectangleShape2D_rcf3f")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="WorldColliders" index="1"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D3" index="0"]
+position = Vector2(122, 75)
+shape = SubResource("RectangleShape2D_rlibl")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
-position = Vector2(201, 138)
+position = Vector2(141.9375, 141)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders" index="3"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D7" index="0"]
+position = Vector2(1.5, 118)
+shape = SubResource("RectangleShape2D_xojio")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders" index="4"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D4" index="0"]
+position = Vector2(273.625, 95)
+shape = SubResource("RectangleShape2D_fts0w")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders" index="5"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D5" index="0"]
+position = Vector2(201.625, 95)
+shape = SubResource("SegmentShape2D_xojio")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="WorldColliders" index="6"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D6" index="0"]
+position = Vector2(161, 95)
+shape = SubResource("SegmentShape2D_xy77r")
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_ay8mk")]
-position = Vector2(192, 0)
+position = Vector2(-32, 0)
 
-[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("4_rcf3f")]
-position = Vector2(-21, 91)
+[node name="DashEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("6_xojio")]
+position = Vector2(53, 119)
+dash_speed = 320.0
 
-[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("4_rcf3f")]
-position = Vector2(270, 109)
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("4_rcf3f")]
+position = Vector2(5, 120)
 
-[node name="BasicEnemy3" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("4_rcf3f")]
-position = Vector2(335, 84)
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("4_rcf3f")]
+position = Vector2(278, 123)
 
-[node name="BasicEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_rcf3f")]
-position = Vector2(-22, 113)
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_rcf3f")]
+position = Vector2(327, 115)
+
+[node name="BasicEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("4_rcf3f")]
+position = Vector2(-22, 130)
 
 [node name="CheckpointPlayArea" parent="Checkpoints/Checkpoint" index="2"]
 position = Vector2(0, 8)
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint/CheckpointPlayArea" index="0"]
-position = Vector2(119, 59)
+position = Vector2(118.5, 59.25)
 
 [node name="PlayerSpawnLocation" parent="." index="3"]
-position = Vector2(112, 88)
+position = Vector2(36, 116)
+
+[node name="GameplaySong" parent="Music" index="0"]
+volume_db = -14.312
 
 [editable path="Checkpoints/Checkpoint"]

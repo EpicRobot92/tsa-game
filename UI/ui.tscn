@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://70l16hiau763"]
+[gd_scene load_steps=6 format=3 uid="uid://70l16hiau763"]
 
 [ext_resource type="Texture2D" uid="uid://dfkc6eo5jrgu3" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_2fwl4"]
 [ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://UI/healthbar.tscn" id="2_dajm1"]
+[ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://UI/beat_pulse.gd" id="4_hat8c"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dajm1"]
 load_path = "res://.godot/imported/avatar-player.png-88ec7b13db3359f8bbb353bd7a69222e.ctex"
@@ -65,5 +66,14 @@ offset_left = 23.0
 offset_top = 13.0
 offset_right = 83.0
 offset_bottom = 21.0
+
+[node name="BeatPulse" type="ColorRect" parent="UIContainer"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 3.0
+offset_right = 34.0
+offset_bottom = 11.0
+color = Color(0.6869349, 0.9776922, 0.6393413, 1)
+script = ExtResource("4_hat8c")
 
 [editable path="UIContainer/EnemyHealthBar"]

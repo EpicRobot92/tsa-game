@@ -11,6 +11,10 @@ const STAGE_PREFABS := [
 @onready var fade_transition: fade_transition = $fade_transitionUI/Control/fade_transition
 @onready var fade_timer: Timer = $fade_transitionUI/fade_timer
 @onready var stage_container: Node2D = $StageContainer
+@onready var menu_fade_timer: Timer = $Menu_Fade_Timer
+@onready var music_container: Node2D = $Music
+
+
 
 
 @onready var music_main: AudioStreamPlayer = $Music/GameplaySong
@@ -22,8 +26,10 @@ var is_camera_locked := false
 var current_stage_index = -1
 var is_stage_ready_for_loading = false
 var player: Player = null
+var player_died = false
 
 func _ready() -> void:
+	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false
 		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
@@ -37,13 +43,37 @@ func _ready() -> void:
 	music_metronme_vol = music_metronome.volume_db
 	music_metronome.volume_db = -80
 	print("start")
-	BeatManager.set_music_players([music_metronome, music_main])
-	BeatManager.loop_songs = true
 	
-	BeatManager.start_songs()
 	load_next_stage()
 	
 	
+
+func find_child_of_type(parent_node):
+	for child in parent_node.get_children():
+		if child is Node2D: 
+			return child
+	return null
+
+func Init_Music():
+	BeatManager.clear_music_players(true)
+	for Music in music_container.get_children(): 
+			Music.queue_free()
+	await get_tree().process_frame
+	print(music_container.get_children())
+	
+	var stage = find_child_of_type(stage_container)
+	var stage_music_container = stage.get_node("Music")
+	for music in stage_music_container.get_children():
+		music.reparent(music_container, true)
+	
+	
+	music_main = music_container.get_node("GameplaySong")
+	music_metronome = music_container.get_node("MusicMetronome")
+	
+	BeatManager.set_music_players([music_metronome, music_main])
+	BeatManager.loop_songs = true
+	BeatManager.start_songs()
+	music_metronome.volume_db = -80 # mute
 	
 
 func _on_twin_swapped(new_twin: Player.Twin) -> void:
@@ -53,7 +83,7 @@ func _on_twin_swapped(new_twin: Player.Twin) -> void:
 			music_metronome.volume_db = -80
 			
 func on_stage_complete():
-	fade_transition.fade_in()
+	fade_transition.fade_in(false)
 	fade_timer.start()
 
 		
@@ -65,7 +95,9 @@ func load_next_stage() -> void:
 	
 		for existing_stage in stage_container.get_children(): 
 			existing_stage.queue_free()
-			fade_transition.fade_out()
+			fade_transition.fade_out(true)
+		
+
 		is_stage_ready_for_loading = true
 		
 func on_checkpoint_start() -> void: 
@@ -84,15 +116,29 @@ func _process(_delta: float) -> void:
 		actors_container.add_child(player)
 		player.position = stage.get_player_spawn_location()
 		actors_container.player = player
-		player.twin_swapped.connect(_on_twin_swapped)
+		EntityManager.twin_swapped.connect(_on_twin_swapped)
 		camera.position = camera_initial_position
 		camera.reset_smoothing()
-		fade_transition.fade_out()
+		Init_Music()
+		fade_transition.fade_out(true)
 	
+	if player and player.current_health <= 0 and not player_died:
+		player_died = true
+		fade_transition.fade_in(false) 
+		menu_fade_timer.start()
+		
 	
 	if player != null and not is_camera_locked and player.position.x > camera.position.x: 
 		camera.position.x = player.position.x
-	
+		
+
+
+
 	##When the Fade In finishes it starts the level
 func On_Fade_Finished(): 
 	load_next_stage()
+
+
+func on_menu_fade_timer_timeout() -> void:
+	print("menu")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

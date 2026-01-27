@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://63lsetgygmpx"]
+
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="1_mukhs"]
+[ext_resource type="Script" uid="uid://75o1vrj7q5su" path="res://dash_enemy.gd" id="2_5so1e"]
+
+[node name="DashEnemy" instance=ExtResource("1_mukhs")]
+script = ExtResource("2_5so1e")
+too_close_dist = 28.0
+dash_start_dist = 85.0
+dash_trigger_dist = 95.0
+retreat_speed_mult = 1.1
+windup_ms = 160
+dash_ms = 1000
+dash_speed = 500.0
+recover_ms = 320
+require_can_attack = true
+duration_between_hits = 8000
+duration_prep_hit = 2000
+type = 2
+
+[editable path="DamageEmmiter"]
+[editable path="DamageReceiver"]
+[editable path="CollateralDamageEmmiter"]

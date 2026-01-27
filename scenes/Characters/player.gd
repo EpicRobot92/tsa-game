@@ -12,7 +12,6 @@ enum Twin { ECLIPTIO, NOVA }
 var time_since_nova_attack : float 
 @export var nova_projectile_scene: PackedScene
 
-signal twin_swapped(new_twin: Twin)
 
 
 
@@ -48,7 +47,7 @@ func set_active_visual(v: Node2D) -> void:
 ## swaps the twin and plays the current state
 func swap_twin():
 	current_twin = Twin.NOVA if current_twin == Twin.ECLIPTIO else Twin.ECLIPTIO
-	emit_signal("twin_swapped", current_twin)
+	EntityManager.emit_signal("twin_swapped", current_twin)
 	set_active_visual(
 		nova_visual if current_twin == Twin.NOVA else ecliptio_visual
 	)
@@ -98,7 +97,7 @@ func get_random_enemy_prefer_facing() -> Node2D:
 
 
 func fire_nova_shot(enemy: Node2D) -> void:
-	var beat := BeatManager.get_beat_result()
+	var beat := BeatManager.grade_player_action()
 
 	 #DAMAGE SCALING 
 	var dmg_mult := 1.0
@@ -160,7 +159,8 @@ func fire_nova_shot(enemy: Node2D) -> void:
 
 func handle_input() -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
-	velocity = direction * speed
+	if can_move():
+		velocity = direction * speed
 
 	if can_attack() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
