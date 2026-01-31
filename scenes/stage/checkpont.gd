@@ -5,10 +5,14 @@ extends Node
 
 @onready var enemies : Node2D = $Enemies
 @onready var player_detection_area: Area2D = $PlayerDetectionArea
+@onready var enemy_boundaries: Node2D = $Enemy_Boundaries
 
 var active_enemy_counter := 0
 var enemy_data : Array[EnemyData] = []
 var is_activated = false 
+
+
+
 
 func _ready() -> void:
 	player_detection_area.body_entered.connect(on_player_enter.bind())
@@ -28,7 +32,14 @@ func _process(_delta: float) -> void:
 		EntityManager.spawn_enemy.emit(enemy)
 		
 		
+
+func Activate_Enemy_Boundaries() -> void:
+	for static_body in enemy_boundaries.get_children(): 
+		var collsion_shape = static_body.get_node("CollisionShape2D")
+		collsion_shape.disabled = false
 		
+		
+
 func can_spawn_enemies() -> bool:
 	return enemy_data.size() > 0 and active_enemy_counter < nb_simultaneous_enemies
 
@@ -42,6 +53,7 @@ func on_enemy_death(_enemy: Character) -> void:
 
 func on_player_enter(_player: Player) -> void:
 	if not is_activated: 
+		Activate_Enemy_Boundaries()
 		StageManager.checkpoint_start.emit()
 		active_enemy_counter = 0
 		is_activated = true

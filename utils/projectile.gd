@@ -2,6 +2,7 @@ class_name Projectile
 extends Area2D
 
 enum Type { DIRECTION, TARGET }
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 @export var projectile_type: Type = Type.DIRECTION
 @export var speed: float = 650.0
@@ -27,6 +28,11 @@ func _ready() -> void:
 	queue_free()
 
 func _process(delta: float) -> void:
+	# Flip sprite based on direction
+	if direction.x != 0:
+		sprite_2d.flip_h = direction.x < 0
+	
+	
 	match projectile_type:
 		Type.DIRECTION:
 			global_position += direction * speed * delta

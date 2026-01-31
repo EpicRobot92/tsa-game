@@ -4,6 +4,8 @@ extends ColorRect
 @onready var fade_transition_ui: CanvasLayer = $"../.."
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+signal animation_finished
+
 var fade_time := 1.0
 
 @onready var timer: Timer = $Timer
@@ -44,5 +46,6 @@ func fade_out(disable) -> void:
 	
 
 func _on_timer_timeout() -> void:
+	emit_signal("animation_finished")
 	if disable_vis:
 		fade_transition_ui.visible = false

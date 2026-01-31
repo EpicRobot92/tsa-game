@@ -6,6 +6,7 @@ extends Node2D
 const ENEMY_MAP := {
 	Character.Type.BASIC_ENEMY: preload("res://scenes/Characters/basic_enemy.tscn"),
 	Character.Type.DASH_ENEMY: preload("res://scenes/Characters/dash_enemy.tscn"),
+	Character.Type.ELITE_DASHER_ENEMY: preload("res://scenes/Characters/elite_dash_enemy.tscn")
 }
 
 func _ready() -> void:

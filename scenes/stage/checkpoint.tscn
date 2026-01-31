@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmsk2w5eushcn"]
+[gd_scene load_steps=6 format=3 uid="uid://bmsk2w5eushcn"]
 
 [ext_resource type="Script" uid="uid://b43t8spdmgk7u" path="res://scenes/stage/checkpont.gd" id="1_bypk3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4b2r"]
+size = Vector2(20, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76dia"]
+size = Vector2(20, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgmtq"]
 size = Vector2(8, 135)
@@ -11,6 +17,26 @@ size = Vector2(241, 134.5)
 [node name="Checkpoint" type="Node2D"]
 script = ExtResource("1_bypk3")
 nb_simultaneous_enemies = 2
+
+[node name="Enemy_Boundaries" type="Node2D" parent="."]
+
+[node name="Checkpoint_Boundary2" type="StaticBody2D" parent="Enemy_Boundaries"]
+position = Vector2(272, 112)
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_Boundaries/Checkpoint_Boundary2"]
+shape = SubResource("RectangleShape2D_q4b2r")
+disabled = true
+
+[node name="Checkpoint_Boundary" type="StaticBody2D" parent="Enemy_Boundaries"]
+position = Vector2(-32, 112)
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_Boundaries/Checkpoint_Boundary"]
+shape = SubResource("RectangleShape2D_76dia")
+disabled = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -23,8 +49,9 @@ position = Vector2(120, 68)
 shape = SubResource("RectangleShape2D_cgmtq")
 
 [node name="CheckpointPlayArea" type="Area2D" parent="."]
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointPlayArea"]
-position = Vector2(120, 68)
+position = Vector2(120, 76)
 shape = SubResource("RectangleShape2D_bypk3")
 debug_color = Color(0.35947287, 0.51190495, 0.908342, 0.41960785)

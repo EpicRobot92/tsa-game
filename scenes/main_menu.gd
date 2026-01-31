@@ -3,8 +3,6 @@ extends Node2D
 @onready var fade_timer: Timer = $fade_transitionUI/fade_timer
 
 
-
-
 var button_type = null
 
 func _ready() -> void:

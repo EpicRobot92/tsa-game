@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vvihcrwdoi5n"]
 
-[ext_resource type="Script" uid="uid://brfk3gkihblif" path="res://Scenes/colliders/damage_receiver.gd" id="1_4rbip"]
+[ext_resource type="Script" uid="uid://brfk3gkihblif" path="res://scenes/colliders/damage_receiver.gd" id="1_4rbip"]
 
 [node name="DamageReceiver" type="Area2D"]
 monitoring = false

@@ -1,12 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://70l16hiau763"]
 
-[ext_resource type="Texture2D" uid="uid://dfkc6eo5jrgu3" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_2fwl4"]
 [ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
+[ext_resource type="Texture2D" uid="uid://d7lqxax2r8wm" path="res://assets/art/ui/avatars/Avatar_Basic_Enemy.png" id="2_3sbvi"]
 [ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://UI/healthbar.tscn" id="2_dajm1"]
+[ext_resource type="Texture2D" uid="uid://bm1oiwruf32fk" path="res://assets/art/ui/avatars/Avatar_Ecliptio.png" id="3_nm1m0"]
 [ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://UI/beat_pulse.gd" id="4_hat8c"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dajm1"]
-load_path = "res://.godot/imported/avatar-player.png-88ec7b13db3359f8bbb353bd7a69222e.ctex"
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_e6gg6")
@@ -29,7 +27,7 @@ offset_right = -11.0
 offset_bottom = 11.0
 grow_horizontal = 0
 scale = Vector2(2, 2)
-texture = ExtResource("1_2fwl4")
+texture = ExtResource("2_3sbvi")
 stretch_mode = 2
 
 [node name="PlayerAvatar" type="TextureRect" parent="UIContainer"]
@@ -37,7 +35,7 @@ layout_mode = 1
 offset_right = 11.0
 offset_bottom = 11.0
 scale = Vector2(2, 2)
-texture = SubResource("CompressedTexture2D_dajm1")
+texture = ExtResource("3_nm1m0")
 stretch_mode = 2
 
 [node name="EnemyHealthBar" parent="UIContainer" instance=ExtResource("2_dajm1")]

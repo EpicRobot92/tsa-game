@@ -12,6 +12,7 @@ extends BasicEnemy
 @export var dash_speed: float = 320.0
 @export var recover_ms: int = 320
 
+
 # only let dash happen when player is alive + attack cooldown ready
 @export var require_can_attack: bool = true
 
@@ -74,9 +75,12 @@ func handle_input() -> void:
 			return
 
 		DashState.DASH:
+			
 			velocity = dash_dir * dash_speed
+			damage_emmiter.monitoring = true
 			if Time.get_ticks_msec() - state_start_ms >= dash_ms:
 				_start_recover()
+				damage_emmiter.monitoring = false
 			return
 		# time after dash
 		DashState.RECOVER:
@@ -105,6 +109,7 @@ func _start_windup(dir_to_player: Vector2) -> void:
 
 
 func _start_dash() -> void:
+
 	state = State.ATTACK
 	dash_state = DashState.DASH
 	state_start_ms = Time.get_ticks_msec()

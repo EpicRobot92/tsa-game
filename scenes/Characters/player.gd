@@ -27,7 +27,7 @@ var time_since_swapped = Time.get_ticks_msec()
 
 func _ready() -> void:
 	super._ready()
-	anim_attacks = ["punch", "punch_alt", "kick", "roundkick"]
+	anim_attacks = ["punch"]
 	## sets up the current twin
 	set_active_visual(
 		nova_visual if current_twin == Twin.NOVA else ecliptio_visual
@@ -165,7 +165,9 @@ func handle_input() -> void:
 	if can_attack() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
 		if is_last_hit_successful:
-			attack_combo_index = (attack_combo_index + 1) % anim_attacks.size() # rotates the attack Anims
+			attack_combo_index = (attack_combo_index + 1) % anim_attacks.size() if anim_attacks.size() > 1 else attack_combo_index + 1# rotates the attack Anims
+			
+		
 			is_last_hit_successful = false
 		else: 
 			attack_combo_index = 0

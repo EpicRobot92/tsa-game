@@ -88,6 +88,7 @@ swap={
 2d_physics/layer_6="EnemyDamageReceiver"
 2d_physics/layer_7="DestructibleDamageReceiver"
 2d_physics/layer_8="InvisibleWalls"
+2d_physics/layer_9="CheckpointBoundaries"
 2d_physics/canvas_textures/default_texture_filter=1
 2d_physics/size/window_width_override=0
 2d_physics/stretch/scale_mode="fractional"

@@ -9,6 +9,7 @@
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_eu1pv")
+combo_num = 3
 speed = 5.0
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]

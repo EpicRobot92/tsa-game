@@ -16,13 +16,14 @@ extends CanvasLayer
 var time_start_healthbar_visible := Time.get_ticks_msec()
 
 const avatar_map : Dictionary = {
-	Character.Type.BASIC_ENEMY: preload("res://assets/art/ui/avatars/avatar-goon.png"),
-	Character.Type.DASH_ENEMY: preload("res://assets/art/ui/avatars/avatar-goon.png"),
+	Character.Type.BASIC_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Basic_Enemy.png"),
+	Character.Type.DASH_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Dasher_Enemy.png"),
+	Character.Type.ELITE_DASHER_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Elite_Dasher_Enemy.png")
 }
 
 const player_map : Dictionary = {
-	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/avatars/avatar-player.png"),
-	Player.Twin.NOVA: preload("res://assets/art/ui/avatars/avatar-punk.png"),
+	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/avatars/Avatar_Ecliptio.png"),
+	Player.Twin.NOVA: preload("res://assets/art/ui/avatars/avatar_Nova.png"),
 }
 
 

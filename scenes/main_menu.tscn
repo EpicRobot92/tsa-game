@@ -38,10 +38,10 @@ position = Vector2(55.999996, 16.000002)
 scale = Vector2(0.7, 0.7)
 
 [node name="Start" type="TextureButton" parent="button_manager/CanvasGroup"]
-offset_left = 27.142853
-offset_top = 7.1428566
-offset_right = 146.14285
-offset_bottom = 33.142857
+offset_left = 29.999994
+offset_top = 55.71428
+offset_right = 148.99998
+offset_bottom = 81.71428
 texture_normal = ExtResource("3_wu84c")
 texture_pressed = ExtResource("3_8ln24")
 texture_hover = ExtResource("3_8ln24")
@@ -49,10 +49,11 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Credits" type="TextureButton" parent="button_manager/CanvasGroup"]
-offset_left = 37.142864
-offset_top = 102.85713
-offset_right = 139.14287
-offset_bottom = 131.85713
+visible = false
+offset_left = 41.428577
+offset_top = 70.0
+offset_right = 143.42857
+offset_bottom = 99.0
 texture_normal = ExtResource("8_flqon")
 texture_pressed = ExtResource("7_lgwnu")
 texture_hover = ExtResource("7_lgwnu")
@@ -60,6 +61,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Tutorial" type="TextureButton" parent="button_manager/CanvasGroup"]
+visible = false
 offset_left = 42.857143
 offset_top = 60.000004
 offset_right = 130.85715

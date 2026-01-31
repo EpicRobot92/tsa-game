@@ -1,0 +1,330 @@
+[gd_scene load_steps=25 format=3 uid="uid://41mx3umm633y"]
+
+[ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_2c7xa"]
+[ext_resource type="Texture2D" uid="uid://nb4y3wjhkhhp" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 1/PNG/layers/far-buildings.png" id="2_j417p"]
+[ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="3_2jqr5"]
+[ext_resource type="Texture2D" uid="uid://dbotj68k7ffx5" path="res://assets/art/Tilesets/SynthCitiesGodot/SynthCitiesGodot/CityLayers/foreground-empty.png" id="4_dox8q"]
+[ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://assets/art/Tilesets/SynthCitiesGodot/SynthCitiesGodot/CityLayers/foreground.png" id="5_dox8q"]
+[ext_resource type="Texture2D" uid="uid://cgisongqrg2ht" path="res://assets/art/props/SewerHoleSprite-1.png.png" id="6_0ix41"]
+[ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="7_0q8b3"]
+[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/Characters/dash_enemy.tscn" id="8_7rhld"]
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="9_8ytnv"]
+[ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="9_spg6w"]
+[ext_resource type="PackedScene" uid="uid://bq2jdrk2hrj2t" path="res://scenes/Characters/elite_dash_enemy.tscn" id="10_u2moa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ix41"]
+size = Vector2(26.75, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jsb"]
+size = Vector2(1027, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q8b3"]
+size = Vector2(40, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rhld"]
+size = Vector2(3, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spg6w"]
+size = Vector2(131, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8ytnv"]
+a = Vector2(-59.625, -11)
+b = Vector2(0.375, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_u2moa"]
+a = Vector2(-59.625, -11)
+b = Vector2(-135, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2moa"]
+size = Vector2(40, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4isxg"]
+size = Vector2(33, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt82i"]
+size = Vector2(126, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x3t48"]
+a = Vector2(-65.625, -11)
+b = Vector2(0.375, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6qk8"]
+size = Vector2(135, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uh5j5"]
+a = Vector2(-65.625, -11)
+b = Vector2(1.375, 10)
+
+[node name="stage_3" instance=ExtResource("1_2c7xa")]
+
+[node name="BackLayer" type="Parallax2D" parent="." index="0"]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(240, 0)
+
+[node name="TextureRect" type="TextureRect" parent="BackLayer" index="0"]
+offset_right = 256.0
+offset_bottom = 272.0
+texture = ExtResource("2_j417p")
+stretch_mode = 1
+
+[node name="ForegroundEmpty" type="Sprite2D" parent="Backgrounds" index="0"]
+position = Vector2(-172, 68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2jqr5")
+
+[node name="MainBackground" parent="Backgrounds" index="1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_dox8q")
+
+[node name="MainBackground2" type="Sprite2D" parent="Backgrounds" index="2"]
+position = Vector2(339, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_dox8q")
+centered = false
+
+[node name="Foreground" type="Sprite2D" parent="Backgrounds" index="3"]
+position = Vector2(854, 68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dox8q")
+
+[node name="Foreground2" type="Sprite2D" parent="Backgrounds" index="4"]
+position = Vector2(1196, 68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dox8q")
+
+[node name="SewerHoleSprite1_png" type="Sprite2D" parent="Backgrounds" index="5"]
+position = Vector2(19.000002, 124)
+scale = Vector2(0.59375, 0.40625)
+texture = ExtResource("6_0ix41")
+
+[node name="SewerHoleSprite1_png2" type="Sprite2D" parent="Backgrounds" index="6"]
+position = Vector2(1007, 124)
+scale = Vector2(0.59375, 0.40625)
+texture = ExtResource("6_0ix41")
+
+[node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
+position = Vector2(13.625, 97)
+shape = SubResource("RectangleShape2D_0ix41")
+
+[node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
+position = Vector2(513.5, 144)
+shape = SubResource("RectangleShape2D_p6jsb")
+
+[node name="FirstColisionGroup" type="Node2D" parent="WorldColliders" index="2"]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="0"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D3" index="0"]
+position = Vector2(122, 75)
+shape = SubResource("RectangleShape2D_0q8b3")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="1"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="0"]
+position = Vector2(1.5, 118)
+shape = SubResource("RectangleShape2D_7rhld")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="1"]
+position = Vector2(1025, 119)
+shape = SubResource("RectangleShape2D_7rhld")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="2"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D4" index="0"]
+position = Vector2(267.5, 95)
+shape = SubResource("RectangleShape2D_spg6w")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="3"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D5" index="0"]
+position = Vector2(201.625, 95)
+shape = SubResource("SegmentShape2D_8ytnv")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="4"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D6" index="0"]
+position = Vector2(161, 95)
+shape = SubResource("SegmentShape2D_u2moa")
+
+[node name="FirstColisionGroup2" type="Node2D" parent="WorldColliders" index="3"]
+position = Vector2(344, 0)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup2" index="0"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup2/StaticBody2D3" index="0"]
+position = Vector2(117, 75)
+shape = SubResource("RectangleShape2D_u2moa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup2/StaticBody2D3" index="1"]
+position = Vector2(5.5, 96)
+shape = SubResource("RectangleShape2D_4isxg")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup2" index="1"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup2" index="2"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup2/StaticBody2D4" index="0"]
+position = Vector2(266, 95)
+shape = SubResource("RectangleShape2D_pt82i")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup2" index="3"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup2/StaticBody2D5" index="0"]
+position = Vector2(201.625, 95)
+shape = SubResource("SegmentShape2D_x3t48")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup2" index="4"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup2/StaticBody2D6" index="0"]
+position = Vector2(156, 96)
+shape = SubResource("SegmentShape2D_u2moa")
+
+[node name="FirstColisionGroup3" type="Node2D" parent="WorldColliders" index="4"]
+position = Vector2(688, 0)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="0"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D3" index="0"]
+position = Vector2(117, 75)
+shape = SubResource("RectangleShape2D_u2moa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D3" index="1"]
+position = Vector2(5.5, 96)
+shape = SubResource("RectangleShape2D_4isxg")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="1"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="2"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="0"]
+position = Vector2(270.5, 95)
+shape = SubResource("RectangleShape2D_i6qk8")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="3"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D5" index="0"]
+position = Vector2(201.625, 95)
+shape = SubResource("SegmentShape2D_uh5j5")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="4"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D6" index="0"]
+position = Vector2(156, 96)
+shape = SubResource("SegmentShape2D_u2moa")
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("7_0q8b3")]
+
+[node name="DashEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("8_7rhld")]
+position = Vector2(-16, 120)
+
+[node name="DashEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("8_7rhld")]
+position = Vector2(248, 120)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("10_u2moa")]
+position = Vector2(-22, 125)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("7_0q8b3")]
+position = Vector2(240, 0)
+
+[node name="DashEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="0" instance=ExtResource("8_7rhld")]
+position = Vector2(-16, 120)
+
+[node name="DashEnemy2" parent="Checkpoints/Checkpoint2/Enemies" index="1" instance=ExtResource("8_7rhld")]
+position = Vector2(248, 120)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="2" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint2/Enemies" index="3" instance=ExtResource("9_8ytnv")]
+position = Vector2(249, 120)
+
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="4" instance=ExtResource("10_u2moa")]
+position = Vector2(-22, 125)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint2/Enemies" index="5" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy4" parent="Checkpoints/Checkpoint2/Enemies" index="6" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource("7_0q8b3")]
+position = Vector2(504, 0)
+nb_simultaneous_enemies = 4
+
+[node name="DashEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="0" instance=ExtResource("8_7rhld")]
+position = Vector2(-16, 120)
+
+[node name="DashEnemy2" parent="Checkpoints/Checkpoint3/Enemies" index="1" instance=ExtResource("8_7rhld")]
+position = Vector2(248, 120)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="2" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint3/Enemies" index="3" instance=ExtResource("9_8ytnv")]
+position = Vector2(249, 120)
+
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="4" instance=ExtResource("10_u2moa")]
+position = Vector2(-22, 125)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint3/Enemies" index="5" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy4" parent="Checkpoints/Checkpoint3/Enemies" index="6" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource("7_0q8b3")]
+position = Vector2(728, 0)
+nb_simultaneous_enemies = 4
+
+[node name="DashEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="0" instance=ExtResource("8_7rhld")]
+position = Vector2(-16, 120)
+
+[node name="DashEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="1" instance=ExtResource("8_7rhld")]
+position = Vector2(248, 120)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="2" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint4/Enemies" index="3" instance=ExtResource("9_8ytnv")]
+position = Vector2(249, 120)
+
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="4" instance=ExtResource("10_u2moa")]
+position = Vector2(-22, 125)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="5" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="EliteDasherEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="6" instance=ExtResource("10_u2moa")]
+position = Vector2(19, 121)
+
+[node name="GameplaySong" parent="Music" index="0"]
+stream = ExtResource("9_spg6w")
+
+[editable path="Checkpoints/Checkpoint"]
+[editable path="Checkpoints/Checkpoint2"]
+[editable path="Checkpoints/Checkpoint3"]
+[editable path="Checkpoints/Checkpoint4"]

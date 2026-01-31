@@ -7,6 +7,7 @@ const GRAVITY := 600.0
 @export var can_combo : bool
 @export var damage : int
 @export var damage_power : int
+@export var combo_num : int
 @export var duration_grounded : float 
 @export var flight_speed : float
 @export var jump_intensity : float
@@ -31,7 +32,7 @@ const GRAVITY := 600.0
 
 
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK}
-enum Type {PLAYER, BASIC_ENEMY, DASH_ENEMY}
+enum Type {PLAYER, BASIC_ENEMY, DASH_ENEMY, ELITE_DASHER_ENEMY}
 
 var anim_attacks := []
 var anim_map : Dictionary = {
@@ -114,7 +115,10 @@ func handle_death(delta : float) -> void:
 		
 func handle_animations():
 	if state == State.ATTACK: 
-		animation_player.play(anim_attacks[attack_combo_index])
+		if anim_attacks.size() > 1: 
+			animation_player.play(anim_attacks[attack_combo_index])
+		else: 
+			animation_player.play(anim_attacks[0])
 	elif animation_player.has_animation(anim_map[state]):
 		animation_player.play(anim_map[state])
 	
@@ -203,11 +207,13 @@ func on_emit_damage(receiver: DamageReciever) -> void:
 
 	if state == State.JUMPKICK:
 		hit_type = DamageReciever.HitType.KNOCKDOWN
-
+	print(attack_combo_index)
 	# Only do POWER if there are multiple attacks in the combo and we're on the last hit
-	if anim_attacks.size() > 1 and attack_combo_index == anim_attacks.size() - 1 and can_combo == true:
+	if  attack_combo_index == combo_num and can_combo == true:
+		attack_combo_index = 0
 		hit_type = DamageReciever.HitType.POWER
 		current_damage = damage_power
+		
 
 	# character sends knockback :D
 	receiver.damage_received.emit(current_damage, direction, hit_type, knockback_intensity)

@@ -5,6 +5,7 @@ const PLAYER_PREFAB := preload("res://scenes/Characters/player.tscn")
 const STAGE_PREFABS := [
 	preload("res://scenes/stage/stage_01.tscn"),
 	preload("res://scenes/stage/stage_2.tscn"),
+	preload("res://scenes/stage/stage_3.tscn"),
 ]
 @onready var actors_container: Node2D = $ActorsContainer
 @onready var camera: Camera2D = $Camera
@@ -27,6 +28,7 @@ var current_stage_index = -1
 var is_stage_ready_for_loading = false
 var player: Player = null
 var player_died = false
+var DeathCounter := 0
 
 func _ready() -> void:
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
@@ -35,10 +37,11 @@ func _ready() -> void:
 		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
 		
 	camera_initial_position = camera.position
-	fade_timer.timeout.connect(On_Fade_Finished.bind())
+	
 	StageManager.checkpoint_start.connect(on_checkpoint_start.bind())
 	StageManager.checkpoint_complete.connect(on_checkpoint_complete.bind())
 	StageManager.stage_complete.connect(on_stage_complete)
+	EntityManager.twin_swapped.connect(_on_twin_swapped)
 
 	music_metronme_vol = music_metronome.volume_db
 	music_metronome.volume_db = -80
@@ -82,9 +85,19 @@ func _on_twin_swapped(new_twin: Player.Twin) -> void:
 		else:
 			music_metronome.volume_db = -80
 			
+var is_transitioning := false
+
 func on_stage_complete():
+	if is_transitioning:
+		return
+	is_transitioning = true
+	
+	DeathCounter = 0
 	fade_transition.fade_in(false)
-	fade_timer.start()
+	await fade_transition.animation_finished
+	
+	load_next_stage()
+	is_transitioning = false
 
 		
 func load_next_stage() -> void:
@@ -95,11 +108,34 @@ func load_next_stage() -> void:
 	
 		for existing_stage in stage_container.get_children(): 
 			existing_stage.queue_free()
-			fade_transition.fade_out(true)
+			
 		
-
+		fade_transition.fade_out(true)
 		is_stage_ready_for_loading = true
-		
+
+
+
+
+
+func restart_level() -> void:
+	fade_transition.fade_in(false)
+
+
+	
+	for actor in actors_container.get_children():
+		actor.queue_free()
+	for st in stage_container.get_children():
+		st.queue_free()
+	await fade_transition.animation_finished
+	await get_tree().process_frame
+	
+   
+	is_stage_ready_for_loading = true
+
+
+
+
+
 func on_checkpoint_start() -> void: 
 	is_camera_locked = true
 	
@@ -116,16 +152,21 @@ func _process(_delta: float) -> void:
 		actors_container.add_child(player)
 		player.position = stage.get_player_spawn_location()
 		actors_container.player = player
-		EntityManager.twin_swapped.connect(_on_twin_swapped)
 		camera.position = camera_initial_position
 		camera.reset_smoothing()
 		Init_Music()
+		player_died = false
 		fade_transition.fade_out(true)
 	
 	if player and player.current_health <= 0 and not player_died:
 		player_died = true
-		fade_transition.fade_in(false) 
-		menu_fade_timer.start()
+		if DeathCounter < 2:
+			DeathCounter += 1
+			restart_level()
+		else:
+			fade_transition.fade_in(false) 
+			menu_fade_timer.start()
+		
 		
 	
 	if player != null and not is_camera_locked and player.position.x > camera.position.x: 
