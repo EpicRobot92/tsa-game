@@ -18,7 +18,9 @@ func get_player_spawn_location() -> Vector2:
 
 
 func on_checkpoint_complete(checkpoint: Checkpoint) -> void: 
-	print("check")
+	if checkpoints == null or checkpoints.get_child_count() == 0:
+		return
+
 	if checkpoints.get_child(-1) == checkpoint:
 		print("last")
 		StageManager.stage_complete.emit()

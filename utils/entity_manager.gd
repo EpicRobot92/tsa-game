@@ -4,6 +4,7 @@ signal death_enemy(enemy: Character)
 signal spawn_enemy(enemy_data: EnemyData)
 
 signal twin_swapped(new_twin: Player.Twin)
+signal Player_Acted(state : Player.State)
 
 const ENEMY_MAP := {
 	Character.Type.BASIC_ENEMY: preload("res://scenes/Characters/basic_enemy.tscn")

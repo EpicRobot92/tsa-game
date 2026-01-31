@@ -53,7 +53,7 @@ func on_enemy_death(_enemy: Character) -> void:
 
 func on_player_enter(_player: Player) -> void:
 	if not is_activated: 
-		Activate_Enemy_Boundaries()
+		call_deferred("Activate_Enemy_Boundaries")
 		StageManager.checkpoint_start.emit()
 		active_enemy_counter = 0
 		is_activated = true

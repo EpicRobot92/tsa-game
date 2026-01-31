@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://dsqk21shjd4wt"]
+
+[ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_3us1v"]
+[ext_resource type="Script" uid="uid://do0oyjy6dulg8" path="res://scenes/stage/tutorial.gd" id="2_qepds"]
+[ext_resource type="Texture2D" uid="uid://bdosmnant6544" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/back.png" id="3_r788g"]
+[ext_resource type="Texture2D" uid="uid://dawqd346wq36l" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/middle.png" id="4_4ow82"]
+[ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="5_syqya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wgo"]
+size = Vector2(34.898438, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfh1x"]
+size = Vector2(557.59375, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvomp"]
+size = Vector2(52, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnms2"]
+size = Vector2(3, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73ajk"]
+size = Vector2(141, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l6ila"]
+a = Vector2(-59.625, -11)
+b = Vector2(0.375, 10)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7g5r4"]
+a = Vector2(-59.625, -11)
+b = Vector2(-135, 10)
+
+[node name="Tutorial" instance=ExtResource("1_3us1v")]
+script = ExtResource("2_qepds")
+tutorial_steps = Array[String](["move", "jump", "attack", "jumpkick", "swap", "attack"])
+
+[node name="BackLayer" type="Parallax2D" parent="Backgrounds" index="0"]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(240, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Backgrounds/BackLayer" index="0"]
+offset_right = 240.0
+offset_bottom = 272.0
+texture = ExtResource("3_r788g")
+stretch_mode = 1
+
+[node name="BackFarlayer" type="Parallax2D" parent="Backgrounds" index="1"]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(240, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Backgrounds/BackFarlayer" index="0"]
+offset_right = 240.0
+offset_bottom = 272.0
+texture = ExtResource("4_4ow82")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MainBackground" parent="Backgrounds" index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_syqya")
+
+[node name="ForegroundEmpty" type="Sprite2D" parent="." index="1"]
+position = Vector2(-171, 68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_syqya")
+
+[node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
+position = Vector2(8, 103)
+shape = SubResource("RectangleShape2D_d2wgo")
+
+[node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
+position = Vector2(202, 136)
+shape = SubResource("RectangleShape2D_pfh1x")
+
+[node name="FirstColisionGroup" type="Node2D" parent="WorldColliders" index="2"]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="0"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D3" index="0"]
+position = Vector2(122, 75)
+shape = SubResource("RectangleShape2D_mvomp")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="1"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="0"]
+position = Vector2(1.5, 118)
+shape = SubResource("RectangleShape2D_rnms2")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="2"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D4" index="0"]
+position = Vector2(273.5, 95)
+shape = SubResource("RectangleShape2D_73ajk")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="3"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D5" index="0"]
+position = Vector2(201.625, 95)
+shape = SubResource("SegmentShape2D_l6ila")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="4"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D6" index="0"]
+position = Vector2(161, 95)
+shape = SubResource("SegmentShape2D_7g5r4")
+
+[node name="PlayerSpawnLocation" parent="." index="4"]
+position = Vector2(120, 120)

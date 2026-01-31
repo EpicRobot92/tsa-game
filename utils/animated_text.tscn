@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ebci32a3rdk7"]
+
+[ext_resource type="FontFile" uid="uid://b6iw2fkjcbro1" path="res://assets/art/Fonts/PressStart2P.ttf" id="1_fn8y1"]
+[ext_resource type="Script" uid="uid://0icc1lqmlhlg" path="res://utils/animated_text.gd" id="2_055i5"]
+
+[node name="Animated_text" type="RichTextLabel"]
+offset_left = 1.0
+offset_right = 124.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("1_fn8y1")
+theme_override_fonts/bold_font = ExtResource("1_fn8y1")
+theme_override_fonts/bold_italics_font = ExtResource("1_fn8y1")
+theme_override_fonts/italics_font = ExtResource("1_fn8y1")
+theme_override_fonts/mono_font = ExtResource("1_fn8y1")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+text = "Hello"
+script = ExtResource("2_055i5")

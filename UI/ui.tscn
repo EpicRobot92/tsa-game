@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://70l16hiau763"]
+[gd_scene load_steps=7 format=3 uid="uid://70l16hiau763"]
 
 [ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://d7lqxax2r8wm" path="res://assets/art/ui/avatars/Avatar_Basic_Enemy.png" id="2_3sbvi"]
 [ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://UI/healthbar.tscn" id="2_dajm1"]
 [ext_resource type="Texture2D" uid="uid://bm1oiwruf32fk" path="res://assets/art/ui/avatars/Avatar_Ecliptio.png" id="3_nm1m0"]
 [ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://UI/beat_pulse.gd" id="4_hat8c"]
+[ext_resource type="PackedScene" uid="uid://ebci32a3rdk7" path="res://utils/animated_text.tscn" id="6_nm1m0"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_e6gg6")
@@ -73,5 +74,14 @@ offset_right = 34.0
 offset_bottom = 11.0
 color = Color(0.6869349, 0.9776922, 0.6393413, 1)
 script = ExtResource("4_hat8c")
+
+[node name="Tutorial_Text" parent="UIContainer" instance=ExtResource("6_nm1m0")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 67.0
+horizontal_alignment = 1
+text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press C to attack!", "tutorial complete!"])
 
 [editable path="UIContainer/EnemyHealthBar"]

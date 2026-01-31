@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var enemy_avatar: TextureRect = $UIContainer/EnemyAvatar
 @onready var player_avatar: TextureRect = $UIContainer/PlayerAvatar
 @onready var beat_pulse: ColorRect = $UIContainer/BeatPulse
+@onready var tutorial_text: animated_text = $UIContainer/Tutorial_Text
 
 
 @export var duration_healthbar_visible : int 
@@ -27,6 +28,8 @@ const player_map : Dictionary = {
 }
 
 
+
+
 func _init() -> void:
 	
 	DamageManager.health_change.connect(on_character_health_change.bind())
@@ -34,12 +37,19 @@ func _init() -> void:
 
 func _ready() -> void: 
 	EntityManager.twin_swapped.connect(on_twin_swap.bind())
+	StageManager.show_tutorial_prompt.connect(On_tutorial_prompt.bind())
 	enemy_avatar.visible = false
 	enemy_health_bar.visible = false
 	beat_pulse.visible = false
 	
 func on_checkpoint_complete(_checkpoint: Checkpoint) -> void:
 	pass
+
+func On_tutorial_prompt(index):
+	if index != 8: 
+		tutorial_text.change_text(index)
+	else: 
+		tutorial_text.hide_text()
 
 func _process(_delta: float) -> void:
 	if enemy_health_bar.visibility_layer and (Time.get_ticks_msec() - time_start_healthbar_visible > duration_healthbar_visible):

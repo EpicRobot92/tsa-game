@@ -3,6 +3,7 @@ extends Node2D
 const PLAYER_PREFAB := preload("res://scenes/Characters/player.tscn")
 
 const STAGE_PREFABS := [
+	preload("res://scenes/stage/tutorial.tscn"),
 	preload("res://scenes/stage/stage_01.tscn"),
 	preload("res://scenes/stage/stage_2.tscn"),
 	preload("res://scenes/stage/stage_3.tscn"),
@@ -24,7 +25,7 @@ const STAGE_PREFABS := [
 var camera_initial_position := Vector2.ZERO
 var music_metronme_vol : float
 var is_camera_locked := false
-var current_stage_index = -1
+var current_stage_index = StageManager.start_level
 var is_stage_ready_for_loading = false
 var player: Player = null
 var player_died = false

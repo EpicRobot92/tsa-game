@@ -161,9 +161,11 @@ func handle_input() -> void:
 	var direction := Input.get_vector("left", "right", "up", "down")
 	if can_move():
 		velocity = direction * speed
+		EntityManager.Player_Acted.emit(state)
 
 	if can_attack() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
+		EntityManager.Player_Acted.emit(state)
 		if is_last_hit_successful:
 			attack_combo_index = (attack_combo_index + 1) % anim_attacks.size() if anim_attacks.size() > 1 else attack_combo_index + 1# rotates the attack Anims
 			
@@ -175,17 +177,21 @@ func handle_input() -> void:
 			var enemy := get_random_enemy_prefer_facing() 
 			if enemy:
 				state = State.ATTACK
+				EntityManager.Player_Acted.emit(state)
 				fire_nova_shot(enemy)
 				time_since_nova_attack = Time.get_ticks_msec()
 				
 
 	if can_jump() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("jump"):
 		state = State.TAKEOFF
+		EntityManager.Player_Acted.emit(state)
 
 	if can_jumpkick() and Input.is_action_just_pressed("attack"):
 		state = State.JUMPKICK
+		EntityManager.Player_Acted.emit(state)
 	if can_swap() and Input.is_action_just_pressed("swap"): 
 		swap_twin()
+		EntityManager.Player_Acted.emit(Player.State.SWAP)
 		time_since_swapped = Time.get_ticks_msec()
 	
 # checks if the player is facing right or left

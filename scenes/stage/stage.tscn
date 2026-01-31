@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dihju6yeyh4rd" path="res://assets/music/Novametrnome(118 BPM).mp3" id="3_a221a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecxui"]
-size = Vector2(923.1875, 8)
+size = Vector2(557.59375, 8)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_ecxui")
