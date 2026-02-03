@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsqk21shjd4wt"]
+[gd_scene load_steps=16 format=3 uid="uid://dsqk21shjd4wt"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_3us1v"]
 [ext_resource type="Script" uid="uid://do0oyjy6dulg8" path="res://scenes/stage/tutorial.gd" id="2_qepds"]
 [ext_resource type="Texture2D" uid="uid://bdosmnant6544" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/back.png" id="3_r788g"]
 [ext_resource type="Texture2D" uid="uid://dawqd346wq36l" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/middle.png" id="4_4ow82"]
 [ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="5_syqya"]
+[ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="6_syqya"]
+[ext_resource type="Script" uid="uid://g2et52f0oe1b" path="res://scenes/stage/tutcheckpoint.gd" id="7_d2wgo"]
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="8_d2wgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wgo"]
 size = Vector2(34.898438, 8)
@@ -111,5 +114,21 @@ collision_mask = 0
 position = Vector2(161, 95)
 shape = SubResource("SegmentShape2D_7g5r4")
 
+[node name="tutCheckpoint" parent="Checkpoints" index="0" instance=ExtResource("6_syqya")]
+script = ExtResource("7_d2wgo")
+nb_simultaneous_enemies = 1
+
+[node name="BasicEnemy" parent="Checkpoints/tutCheckpoint/Enemies" index="0" instance=ExtResource("8_d2wgo")]
+position = Vector2(256, 128)
+
+[node name="BasicEnemy2" parent="Checkpoints/tutCheckpoint/Enemies" index="1" instance=ExtResource("8_d2wgo")]
+position = Vector2(-19, 127)
+
+[node name="PlayerDetectionArea" parent="Checkpoints/tutCheckpoint" index="2"]
+monitoring = false
+monitorable = false
+
 [node name="PlayerSpawnLocation" parent="." index="4"]
-position = Vector2(120, 120)
+position = Vector2(104, 120)
+
+[editable path="Checkpoints/tutCheckpoint"]

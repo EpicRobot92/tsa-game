@@ -103,6 +103,15 @@ func on_stage_complete():
 		
 func load_next_stage() -> void:
 	current_stage_index += 1
+	
+	## IF all levels are complete 
+	if current_stage_index >= STAGE_PREFABS.size():
+		fade_transition.fade_in(false)
+		await fade_transition.animation_finished
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		return
+
+	
 	if current_stage_index < STAGE_PREFABS.size():
 		for actor : Node2D in actors_container.get_children(): 
 			actor.queue_free()

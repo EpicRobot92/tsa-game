@@ -82,6 +82,6 @@ offset_top = 27.0
 offset_right = 239.0
 offset_bottom = 67.0
 horizontal_alignment = 1
-text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press C to attack!", "tutorial complete!"])
+text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press C to attack! (tip: try attacking on beat)", "Now kill these enimies", "", ""])
 
 [editable path="UIContainer/EnemyHealthBar"]

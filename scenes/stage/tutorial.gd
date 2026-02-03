@@ -1,5 +1,7 @@
 class_name TutorialStage
 extends Stage
+@onready var tut_checkpoint: tutcheckpoint = $Checkpoints/tutCheckpoint
+
 
 @export var tutorial_steps : Array[String] = [
 	"move",
@@ -35,6 +37,7 @@ func start_step() -> void:
 		"swap":
 			wait_for_action(Player.State.SWAP)
 		"attack":
+			
 			wait_for_action(Player.State.ATTACK)
 	
 
@@ -44,6 +47,9 @@ func complete_step() -> void:
 		StageManager.show_tutorial_prompt.emit(8)
 		StageManager.stage_complete.emit()
 		return
+	if step_index == 5: 
+			print("spawn")
+			tut_checkpoint.Activate()
 
 	start_step()
 
@@ -55,3 +61,4 @@ func wait_for_action(State : Player.State):
 			print(tutorial_steps[step_index])
 			break 
 	complete_step()
+	
