@@ -98,7 +98,7 @@ position = Vector2(13, 95.5)
 shape = SubResource("RectangleShape2D_rcf3f")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
-position = Vector2(458, 136)
+position = Vector2(475, 133.5)
 
 [node name="FirstColisionGroup" type="Node2D" parent="WorldColliders" index="2"]
 
@@ -250,6 +250,9 @@ position = Vector2(118.5, 59.25)
 position = Vector2(176, 0)
 nb_simultaneous_enemies = 4
 
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/Enemy_Boundaries/Checkpoint_Boundary2" index="0"]
+position = Vector2(0, -4)
+
 [node name="BasicEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="0" instance=ExtResource("4_rcf3f")]
 position = Vector2(-6, 127)
 
@@ -306,7 +309,7 @@ position = Vector2(8, 0)
 position = Vector2(0, 8)
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint3/CheckpointPlayArea" index="0"]
-position = Vector2(118.5, 59.25)
+position = Vector2(118, 62)
 
 [node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource("3_ay8mk")]
 position = Vector2(680, 0)
