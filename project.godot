@@ -21,6 +21,7 @@ EntityManager="*res://utils/entity_manager.gd"
 BeatManager="*res://scenes/Scripts/BeatManager.gd"
 StageManager="*res://utils/stage_manager.gd"
 DamageManager="*res://utils/damage_manager.gd"
+SoundPlayer="*res://utils/sound_player.tscn"
 
 [debug]
 

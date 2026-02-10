@@ -69,9 +69,10 @@ func grade_player_action() -> Dictionary:
 
 func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int = 0) -> void:
 	_disconnect_master_finished()
+	_disconnect_all_player_finished()
+	_connect_master_finished() 
 
 	players = new_players
-
 	if players.size() == 0:
 		master = null
 		return
@@ -79,7 +80,10 @@ func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int 
 	master_index = clamp(master_index, 0, players.size() - 1)
 	master = players[master_index]
 
-	_connect_master_finished()
+	
+	for p in players:
+		_connect_player_finished(p)
+
 
 
 # Add a single player 
@@ -93,7 +97,9 @@ func add_music_player(p: AudioStreamPlayer, make_master: bool = false) -> void:
 	if master == null or make_master:
 		master = p
 
-	_connect_master_finished()
+	_connect_player_finished(p)
+	_disconnect_all_player_finished()
+
 
 func clear_music_players(stop_audio: bool = true) -> void:
 	_disconnect_master_finished()
@@ -112,6 +118,43 @@ func clear_music_players(stop_audio: bool = true) -> void:
 	players.clear()
 	master = null
 	
+
+
+var _player_finished_connections := {} 
+
+func _connect_player_finished(p: AudioStreamPlayer) -> void:
+	if p == null: return
+	# 
+	if _player_finished_connections.has(p): return
+
+	var cb := func():
+		_on_player_finished(p)
+	p.finished.connect(cb)
+	_player_finished_connections[p] = cb
+
+func _disconnect_all_player_finished() -> void:
+	for p in _player_finished_connections.keys():
+		if is_instance_valid(p):
+			var cb: Callable = _player_finished_connections[p]
+			if p.finished.is_connected(cb):
+				p.finished.disconnect(cb)
+	_player_finished_connections.clear()
+
+func _on_player_finished(p: AudioStreamPlayer) -> void:
+
+	if not running:
+		return
+
+	
+	if p == master:
+		
+		running = false
+		emit_signal("song_stopped")
+		return
+
+	
+	p.play()
+
 
 # Start all songs together
 func start_songs() -> void:

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://b43t8spdmgk7u" path="res://scenes/stage/checkpont.gd" id="1_bypk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4b2r"]
-size = Vector2(20, 50)
+size = Vector2(20, 87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76dia"]
-size = Vector2(20, 50)
+size = Vector2(20, 97)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgmtq"]
 size = Vector2(8, 135)

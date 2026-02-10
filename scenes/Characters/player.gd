@@ -20,13 +20,19 @@ var active_visual: Node2D
 
 var time_since_swapped = Time.get_ticks_msec()
 
-
+const AttackSounds := [ 
+	SoundManager.Sound.ATTACK1,
+	SoundManager.Sound.ATTACK2,
+	SoundManager.Sound.POWERMOVE
+	
+]
 
 
 
 
 func _ready() -> void:
 	super._ready()
+	EntityManager.twin_swapped.emit(Player.Twin.ECLIPTIO)
 	anim_attacks = ["punch"]
 	## sets up the current twin
 	set_active_visual(
@@ -165,7 +171,12 @@ func handle_input() -> void:
 
 	if can_attack() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("attack"):
 		state = State.ATTACK
+		SoundPlayer.play(AttackSounds[attack_combo_index % AttackSounds.size()])
+	
 		EntityManager.Player_Acted.emit(state)
+		
+		
+		
 		if is_last_hit_successful:
 			attack_combo_index = (attack_combo_index + 1) % anim_attacks.size() if anim_attacks.size() > 1 else attack_combo_index + 1# rotates the attack Anims
 			
@@ -184,10 +195,12 @@ func handle_input() -> void:
 
 	if can_jump() and current_twin == Twin.ECLIPTIO and Input.is_action_just_pressed("jump"):
 		state = State.TAKEOFF
+		SoundPlayer.play(SoundManager.Sound.FWEHH)
 		EntityManager.Player_Acted.emit(state)
 
 	if can_jumpkick() and Input.is_action_just_pressed("attack"):
 		state = State.JUMPKICK
+		SoundPlayer.play(SoundManager.Sound.POWERMOVE)
 		EntityManager.Player_Acted.emit(state)
 	if can_swap() and Input.is_action_just_pressed("swap"): 
 		swap_twin()
@@ -223,3 +236,8 @@ func free_slot(enemy : BasicEnemy) -> void:
 	if target_slots.size() == 1: 
 		target_slots[0].free_up()
 	
+	
+func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
+	super.on_receive_damage(amount, direction, hit_type, knockback)
+	SoundPlayer.play(SoundManager.Sound.HURT, true)
+		

@@ -75,7 +75,6 @@ func handle_input() -> void:
 			return
 
 		DashState.DASH:
-			
 			velocity = dash_dir * dash_speed
 			damage_emmiter.monitoring = true
 			if Time.get_ticks_msec() - state_start_ms >= dash_ms:
@@ -109,7 +108,7 @@ func _start_windup(dir_to_player: Vector2) -> void:
 
 
 func _start_dash() -> void:
-
+	SoundPlayer.play(SoundManager.Sound.ZOOM)
 	state = State.ATTACK
 	dash_state = DashState.DASH
 	state_start_ms = Time.get_ticks_msec()

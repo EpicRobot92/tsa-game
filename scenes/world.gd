@@ -8,6 +8,15 @@ const STAGE_PREFABS := [
 	preload("res://scenes/stage/stage_2.tscn"),
 	preload("res://scenes/stage/stage_3.tscn"),
 ]
+
+const STAGE_BPM := [
+	140,
+	118,
+	130,
+	140
+]
+
+
 @onready var actors_container: Node2D = $ActorsContainer
 @onready var camera: Camera2D = $Camera
 @onready var fade_transition: fade_transition = $fade_transitionUI/Control/fade_transition
@@ -35,7 +44,9 @@ func _ready() -> void:
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false
+		
 		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
+		
 		
 	camera_initial_position = camera.position
 	
@@ -74,7 +85,7 @@ func Init_Music():
 	music_main = music_container.get_node("GameplaySong")
 	music_metronome = music_container.get_node("MusicMetronome")
 	
-	BeatManager.set_music_players([music_metronome, music_main])
+	BeatManager.set_music_players([music_main ,music_metronome])
 	BeatManager.loop_songs = true
 	BeatManager.start_songs()
 	music_metronome.volume_db = -80 # mute
@@ -103,6 +114,7 @@ func on_stage_complete():
 		
 func load_next_stage() -> void:
 	current_stage_index += 1
+
 	
 	## IF all levels are complete 
 	if current_stage_index >= STAGE_PREFABS.size():
@@ -110,7 +122,7 @@ func load_next_stage() -> void:
 		await fade_transition.animation_finished
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		return
-
+	BeatManager.bpm = STAGE_BPM[current_stage_index]
 	
 	if current_stage_index < STAGE_PREFABS.size():
 		for actor : Node2D in actors_container.get_children(): 

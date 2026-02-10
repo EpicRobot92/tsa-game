@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -368,10 +368,10 @@ tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.784),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(-0.014, 0.084, 0.192, 0.303, 0.443, 0.547, 0.653, 0.785),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [2, 3, 4, 5, 2, 3, 4, 5, 2]
+"values": [6, 3, 4, 5, 6, 3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4cqt2"]
@@ -406,6 +406,7 @@ type = 2
 
 [node name="CharacterSprite" parent="." index="1"]
 texture = ExtResource("3_5so1e")
+frame = 1
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {

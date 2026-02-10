@@ -108,6 +108,7 @@ func handle_grounded() -> void:
 
 func handle_death(delta : float) -> void:
 	if state == State.DEATH and not can_respawn: 
+		damage_receiver.monitorable = false
 		modulate.a -= delta / 2.0
 		if modulate.a <= 0: 
 			queue_free()

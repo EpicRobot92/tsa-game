@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://41mx3umm633y"]
+[gd_scene load_steps=26 format=3 uid="uid://41mx3umm633y"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_2c7xa"]
 [ext_resource type="Texture2D" uid="uid://nb4y3wjhkhhp" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 1/PNG/layers/far-buildings.png" id="2_j417p"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="9_8ytnv"]
 [ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="9_spg6w"]
 [ext_resource type="PackedScene" uid="uid://bq2jdrk2hrj2t" path="res://scenes/Characters/elite_dash_enemy.tscn" id="10_u2moa"]
+[ext_resource type="AudioStream" uid="uid://dh4qw0ub16oyd" path="res://assets/music/Novametrnome(140 BPM).mp3" id="12_8ytnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ix41"]
 size = Vector2(26.75, 20)
@@ -231,6 +232,7 @@ position = Vector2(156, 96)
 shape = SubResource("SegmentShape2D_u2moa")
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("7_0q8b3")]
+nb_simultaneous_enemies = 3
 
 [node name="DashEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("8_7rhld")]
 position = Vector2(-16, 120)
@@ -287,45 +289,48 @@ position = Vector2(-8, 120)
 [node name="BasicEnemy3" parent="Checkpoints/Checkpoint3/Enemies" index="3" instance=ExtResource("9_8ytnv")]
 position = Vector2(249, 120)
 
-[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="4" instance=ExtResource("10_u2moa")]
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint3/Enemies" index="4" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy4" parent="Checkpoints/Checkpoint3/Enemies" index="5" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="6" instance=ExtResource("10_u2moa")]
 position = Vector2(-22, 125)
-
-[node name="BasicEnemy2" parent="Checkpoints/Checkpoint3/Enemies" index="5" instance=ExtResource("9_8ytnv")]
-position = Vector2(-8, 120)
-
-[node name="BasicEnemy4" parent="Checkpoints/Checkpoint3/Enemies" index="6" instance=ExtResource("9_8ytnv")]
-position = Vector2(-8, 120)
 
 [node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource("7_0q8b3")]
 position = Vector2(728, 0)
 nb_simultaneous_enemies = 4
 
-[node name="DashEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="0" instance=ExtResource("8_7rhld")]
-position = Vector2(-16, 120)
-
-[node name="DashEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="1" instance=ExtResource("8_7rhld")]
+[node name="DashEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="0" instance=ExtResource("8_7rhld")]
 position = Vector2(248, 120)
 
-[node name="BasicEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="2" instance=ExtResource("9_8ytnv")]
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="1" instance=ExtResource("9_8ytnv")]
 position = Vector2(-8, 120)
 
-[node name="BasicEnemy3" parent="Checkpoints/Checkpoint4/Enemies" index="3" instance=ExtResource("9_8ytnv")]
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint4/Enemies" index="2" instance=ExtResource("9_8ytnv")]
 position = Vector2(249, 120)
 
-[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="4" instance=ExtResource("10_u2moa")]
-position = Vector2(-22, 125)
+[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="3" instance=ExtResource("10_u2moa")]
+position = Vector2(-14, 129)
 
-[node name="BasicEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="5" instance=ExtResource("9_8ytnv")]
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="4" instance=ExtResource("9_8ytnv")]
+position = Vector2(-8, 120)
+
+[node name="BasicEnemy4" parent="Checkpoints/Checkpoint4/Enemies" index="5" instance=ExtResource("9_8ytnv")]
 position = Vector2(-8, 120)
 
 [node name="EliteDasherEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="6" instance=ExtResource("10_u2moa")]
 position = Vector2(19, 121)
 
 [node name="PlayerSpawnLocation" parent="." index="4"]
-position = Vector2(24, 120)
+position = Vector2(44, 120)
 
 [node name="GameplaySong" parent="Music" index="0"]
 stream = ExtResource("9_spg6w")
+
+[node name="MusicMetronome" parent="Music" index="1"]
+stream = ExtResource("12_8ytnv")
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]

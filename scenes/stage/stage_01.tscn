@@ -219,6 +219,9 @@ shape = SubResource("SegmentShape2D_xy77r")
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_ay8mk")]
 position = Vector2(-32, 0)
 
+[node name="Checkpoint_Boundary2" parent="Checkpoints/Checkpoint/Enemy_Boundaries" index="0"]
+position = Vector2(296, 112)
+
 [node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("4_rcf3f")]
 position = Vector2(-6, 127)
 
@@ -334,7 +337,7 @@ position = Vector2(254, 127)
 position = Vector2(-10, 127)
 
 [node name="DashEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="5" instance=ExtResource("6_xojio")]
-position = Vector2(-24, 128)
+position = Vector2(-15, 128)
 collision_mask = 9
 
 [node name="BasicEnemy6" parent="Checkpoints/Checkpoint4/Enemies" index="6" instance=ExtResource("4_rcf3f")]
