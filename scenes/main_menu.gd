@@ -10,7 +10,6 @@ var credits_open = false
 
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = false
 	fade_trans.fade_out(true)
 	button_type = "init"

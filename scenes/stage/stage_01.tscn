@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="3_ay8mk"]
 [ext_resource type="Texture2D" uid="uid://dawqd346wq36l" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/middle.png" id="3_fts0w"]
 [ext_resource type="Texture2D" uid="uid://bdosmnant6544" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/back.png" id="3_rlibl"]
-[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="4_rcf3f"]
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/characters/basic_enemy.tscn" id="4_rcf3f"]
 [ext_resource type="Texture2D" uid="uid://cgisongqrg2ht" path="res://assets/art/props/SewerHoleSprite-1.png.png" id="5_xojio"]
-[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/Characters/dash_enemy.tscn" id="6_xojio"]
+[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/characters/dash_enemy.tscn" id="6_xojio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf3f"]
 size = Vector2(26, 21)

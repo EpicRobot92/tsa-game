@@ -1,10 +1,10 @@
 [gd_scene load_steps=43 format=3 uid="uid://cixs4qvhlhbrj"]
 
-[ext_resource type="PackedScene" uid="uid://cen0t6j1l87wf" path="res://scenes/Characters/character.tscn" id="1_3etf2"]
-[ext_resource type="Script" uid="uid://bvokebpuv1yyh" path="res://scenes/Characters/player.gd" id="2_8iw34"]
+[ext_resource type="PackedScene" uid="uid://cen0t6j1l87wf" path="res://scenes/characters/character.tscn" id="1_3etf2"]
+[ext_resource type="Script" uid="uid://bvokebpuv1yyh" path="res://scenes/characters/player.gd" id="2_8iw34"]
 [ext_resource type="Texture2D" uid="uid://dbnl2fqaygfbb" path="res://assets/art/characters/player.png" id="2_40svl"]
-[ext_resource type="PackedScene" uid="uid://bf74djquxx3t5" path="res://scenes/Projectiles/normal_nova_projectile.tscn" id="3_5vcpl"]
-[ext_resource type="PackedScene" uid="uid://dgcdo0kpl53ny" path="res://scenes/Characters/enemy_slot.tscn" id="4_7xbc7"]
+[ext_resource type="PackedScene" uid="uid://bf74djquxx3t5" path="res://scenes/projectiles/normal_nova_projectile.tscn" id="3_5vcpl"]
+[ext_resource type="PackedScene" uid="uid://dgcdo0kpl53ny" path="res://scenes/characters/enemy_slot.tscn" id="4_7xbc7"]
 [ext_resource type="Texture2D" uid="uid://bavyc8aqhb60h" path="res://assets/art/OGCharacters/EcliptioSprites.png" id="4_8u6hb"]
 
 [sub_resource type="Animation" id="Animation_hutbv"]

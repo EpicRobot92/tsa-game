@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="5_syqya"]
 [ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="6_syqya"]
 [ext_resource type="Script" uid="uid://g2et52f0oe1b" path="res://scenes/stage/tutcheckpoint.gd" id="7_d2wgo"]
-[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="8_d2wgo"]
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/characters/basic_enemy.tscn" id="8_d2wgo"]
 [ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="9_pfh1x"]
 [ext_resource type="AudioStream" uid="uid://dh4qw0ub16oyd" path="res://assets/music/Novametrnome(140 BPM).mp3" id="10_mvomp"]
 

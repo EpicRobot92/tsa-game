@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cah2djbdefnx8"]
 
-[ext_resource type="Script" uid="uid://cxovrfrqjpwrf" path="res://Scenes/Props/barrel.gd" id="1_8iu16"]
+[ext_resource type="Script" uid="uid://cxovrfrqjpwrf" path="res://scenes/props/barrel.gd" id="1_8iu16"]
 [ext_resource type="Texture2D" uid="uid://b4lapei1xwn0t" path="res://assets/art/props/barrel.png" id="1_rxjeq"]
 [ext_resource type="PackedScene" uid="uid://vvihcrwdoi5n" path="res://scenes/colliders/damage_receiver.tscn" id="2_olnxv"]
 

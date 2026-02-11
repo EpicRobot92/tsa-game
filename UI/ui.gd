@@ -121,11 +121,9 @@ func on_character_health_change(type: Character.Type, current_health: int, max_h
 
 func _on_resume_pressed() -> void:
 	Resume()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_main_menu_pressed() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	fade_transition.fade_in(false)
 	await fade_transition.animation_finished
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

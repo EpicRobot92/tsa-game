@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bq2jdrk2hrj2t"]
 
-[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/Characters/dash_enemy.tscn" id="1_sr818"]
+[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/characters/dash_enemy.tscn" id="1_sr818"]
 [ext_resource type="Texture2D" uid="uid://cfj6hf4gywrtr" path="res://assets/art/OGCharacters/EliteDasherEnemySprite.png" id="2_chvl2"]
 
 [sub_resource type="Animation" id="Animation_chvl2"]

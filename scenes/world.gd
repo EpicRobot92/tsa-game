@@ -1,6 +1,6 @@
 extends Node2D
 
-const PLAYER_PREFAB := preload("res://scenes/Characters/player.tscn")
+const PLAYER_PREFAB := preload("res://scenes/characters/player.tscn")
 
 const STAGE_PREFABS := [
 	preload("res://scenes/stage/tutorial.tscn"),
@@ -43,7 +43,6 @@ var DeathCounter := 0
 
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false

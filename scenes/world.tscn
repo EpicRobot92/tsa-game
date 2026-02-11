@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ckib81b7rrap" path="res://scenes/world.gd" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://sigkf6a0rlxy" path="res://scenes/actors_container.gd" id="3_7r4gi"]
-[ext_resource type="PackedScene" uid="uid://cah2djbdefnx8" path="res://scenes/Props/barrel.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://cah2djbdefnx8" path="res://scenes/props/barrel.tscn" id="4_k0juu"]
 [ext_resource type="AudioStream" uid="uid://cis1oqkddcaon" path="res://assets/music/gameplay1(3).mp3" id="6_4mrxx"]
 [ext_resource type="AudioStream" uid="uid://dihju6yeyh4rd" path="res://assets/music/Novametrnome(118 BPM).mp3" id="7_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="8_4mrxx"]
-[ext_resource type="PackedScene" uid="uid://70l16hiau763" path="res://UI/ui.tscn" id="9_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://70l16hiau763" path="res://ui/ui.tscn" id="9_7r4gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wyf3"]
 size = Vector2(6, 135)

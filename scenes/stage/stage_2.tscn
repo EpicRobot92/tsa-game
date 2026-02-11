@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://s3g68wfruxki" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 1/PNG/layers/foreground.png" id="4_rkgii"]
 [ext_resource type="Texture2D" uid="uid://cgisongqrg2ht" path="res://assets/art/props/SewerHoleSprite-1.png.png" id="5_f57m5"]
 [ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="6_hish3"]
-[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/Characters/basic_enemy.tscn" id="7_s7a84"]
-[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/Characters/dash_enemy.tscn" id="8_kk3un"]
-[ext_resource type="PackedScene" uid="uid://bq2jdrk2hrj2t" path="res://scenes/Characters/elite_dash_enemy.tscn" id="9_s7a84"]
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/characters/basic_enemy.tscn" id="7_s7a84"]
+[ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/characters/dash_enemy.tscn" id="8_kk3un"]
+[ext_resource type="PackedScene" uid="uid://bq2jdrk2hrj2t" path="res://scenes/characters/elite_dash_enemy.tscn" id="9_s7a84"]
 [ext_resource type="AudioStream" uid="uid://5e2nmmy5qyjf" path="res://assets/music/gameplay2.mp3" id="10_kk3un"]
 [ext_resource type="AudioStream" uid="uid://bo84ox8itpgbc" path="res://assets/music/Novametrnome(130 BPM).mp3" id="11_kk3un"]
 

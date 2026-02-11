@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://70l16hiau763"]
 
-[ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
+[ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://ui/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://d7lqxax2r8wm" path="res://assets/art/ui/avatars/Avatar_Basic_Enemy.png" id="2_3sbvi"]
-[ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://UI/healthbar.tscn" id="2_dajm1"]
+[ext_resource type="PackedScene" uid="uid://bu1jjgia0bgeo" path="res://ui/healthbar.tscn" id="2_dajm1"]
 [ext_resource type="Texture2D" uid="uid://bm1oiwruf32fk" path="res://assets/art/ui/avatars/Avatar_Ecliptio.png" id="3_nm1m0"]
-[ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://UI/beat_pulse.gd" id="4_hat8c"]
+[ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://ui/beat_pulse.gd" id="4_hat8c"]
 [ext_resource type="PackedScene" uid="uid://ebci32a3rdk7" path="res://utils/animated_text.tscn" id="6_nm1m0"]
 [ext_resource type="Texture2D" uid="uid://c2q8cyky3sley" path="res://assets/art/ui/OnwardArrow.png" id="7_c7tqi"]
 [ext_resource type="Texture2D" uid="uid://cou2m55j48vwj" path="res://assets/art/ui/Logos/MINDLESSLogo1.png" id="8_h81ot"]
