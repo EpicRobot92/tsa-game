@@ -51,6 +51,9 @@ var anim_map : Dictionary = {
 	State.PREP_ATTACK: "idle",
 	
 }
+
+@export var fly_duration := 0.25
+var fly_end_time := 0
 var attack_combo_index := 0
 var current_health := 0
 var heading := Vector2.RIGHT
@@ -58,7 +61,9 @@ var height := 0.0
 var height_speed := 0.0
 var is_last_hit_successful := false
 var time_since_grounded := Time.get_ticks_msec()
-var state = State.IDLE
+@export var state = State.IDLE
+
+
 
 func _ready() -> void:
 	damage_emmiter.area_entered.connect(on_emit_damage.bind())
@@ -81,6 +86,7 @@ func _process(delta: float) -> void:
 	character_sprite.position = Vector2.UP * height
 	collision_shape.disabled = is_collision_disabled()
 	move_and_slide()
+	handle_fly_exit()
 	
 	
 	
@@ -170,7 +176,7 @@ func can_get_hurt() -> bool:
 	return [State.IDLE, State.WALK, State.TAKEOFF, State.JUMP, State.LAND, State.PREP_ATTACK].has(state)
 
 func is_collision_disabled() -> bool: 
-	return [State.GROUNDED, State.DEATH, State.FLY].has(state)
+	return [State.GROUNDED, State.DEATH].has(state)
 
 
 func on_action_complete(): 
@@ -182,6 +188,24 @@ func on_takeoff_complete() -> void:
 
 func on_land_complete() -> void:
 	state = State.IDLE
+	
+	
+func handle_fly_exit() -> void:
+	if state != State.FLY:
+		return
+
+	# If the character slam into a wall, it stops flying and fall
+	if is_on_wall():
+		state = State.FALL
+		height_speed = knockdown_intensity
+		velocity = -velocity * 0.5
+		return
+
+	
+	if Time.get_ticks_msec() >= fly_end_time:
+		state = State.HURT
+		velocity = Vector2.ZERO
+
 	
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever.HitType, knockback: float) -> void:
 	if can_get_hurt():
@@ -197,6 +221,7 @@ func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever
 		elif hit_type == DamageReciever.HitType.POWER:
 			state = State.FLY
 			velocity = direction * flight_speed
+			fly_end_time = Time.get_ticks_msec() + int(fly_duration * 1000.0)
 		else:
 			state = State.HURT
 			velocity = direction * kb * knockback_resistance
@@ -208,7 +233,7 @@ func on_emit_damage(receiver: DamageReciever) -> void:
 
 	if state == State.JUMPKICK:
 		hit_type = DamageReciever.HitType.KNOCKDOWN
-	print(attack_combo_index)
+	
 	# Only do POWER if there are multiple attacks in the combo and we're on the last hit
 	if  attack_combo_index == combo_num and can_combo == true:
 		attack_combo_index = 0
@@ -218,13 +243,19 @@ func on_emit_damage(receiver: DamageReciever) -> void:
 
 	# character sends knockback :D
 	receiver.damage_received.emit(current_damage, direction, hit_type, knockback_intensity)
+
 	is_last_hit_successful = true
 
-	
-func on_emit_collateral_damage(receiver : DamageReciever) -> void: 
-	if receiver != damage_receiver: 
+	## only will do damage if damageable
+func on_emit_collateral_damage(area: Area2D) -> void:
+	var receiver := area as DamageReciever
+	if receiver == null:
+		return
+
+	if receiver != damage_receiver:
 		var direction := Vector2.LEFT if receiver.global_position.x < global_position.x else Vector2.RIGHT
 		receiver.damage_received.emit(0, direction, DamageReciever.HitType.KNOCKDOWN, knockback_intensity)
+
 
 	
 

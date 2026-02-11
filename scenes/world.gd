@@ -40,7 +40,10 @@ var player: Player = null
 var player_died = false
 var DeathCounter := 0
 
+
+
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false

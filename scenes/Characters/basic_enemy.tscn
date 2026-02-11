@@ -448,7 +448,7 @@ position = Vector2(0.5, -19.5)
 shape = SubResource("RectangleShape2D_0lnlb")
 
 [node name="CollateralDamageEmmiter" parent="." index="6"]
-collision_mask = 160
+collision_mask = 161
 
 [node name="CollisionShape2D" parent="CollateralDamageEmmiter" index="0"]
 position = Vector2(0, -9)

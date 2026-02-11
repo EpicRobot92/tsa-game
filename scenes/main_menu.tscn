@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvvksksfq18q6"]
+[gd_scene load_steps=13 format=3 uid="uid://cvvksksfq18q6"]
 
 [ext_resource type="Script" uid="uid://da0hlgh1p3u45" path="res://scenes/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://ck3mda48d6f6y" path="res://assets/art/ui/menu/MenuButtons/Start/Highlight.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://vbo6it6eym3r" path="res://assets/art/ui/menu/MenuButtons/Tutorial/UnSelected.png" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://bd7vs6am8yq4a" path="res://assets/art/ui/menu/MenuButtons/Tutorial/Highlight.png" id="6_5dd4i"]
-[ext_resource type="Texture2D" uid="uid://c4mlolnsjarto" path="res://assets/art/ui/menu/MenuButtons/Credits/UnSelected.png" id="7_lgwnu"]
-[ext_resource type="Texture2D" uid="uid://cppby874k87gp" path="res://assets/art/ui/menu/MenuButtons/Credits/Highlight.png" id="8_flqon"]
 [ext_resource type="Texture2D" uid="uid://cou2m55j48vwj" path="res://assets/art/ui/Logos/MINDLESSLogo1.png" id="10_5dd4i"]
+[ext_resource type="FontFile" uid="uid://ue5io601n6mi" path="res://assets/fonts/PressStart2P.ttf" id="12_flqon"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5dd4i"]
+load_path = "res://.godot/imported/Highlight.png-dcb85af6dbc533bf6f51278632d53344.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lgwnu"]
+load_path = "res://.godot/imported/UnSelected.png-d18e236a7b9bf1df6c80f69b364c2057.ctex"
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_l6cm7")
@@ -49,14 +54,13 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Credits" type="TextureButton" parent="button_manager/CanvasGroup"]
-visible = false
-offset_left = 41.428577
-offset_top = 70.0
-offset_right = 143.42857
-offset_bottom = 99.0
-texture_normal = ExtResource("8_flqon")
-texture_pressed = ExtResource("7_lgwnu")
-texture_hover = ExtResource("7_lgwnu")
+offset_left = 38.57143
+offset_top = 114.28572
+offset_right = 140.57143
+offset_bottom = 143.28572
+texture_normal = SubResource("CompressedTexture2D_5dd4i")
+texture_pressed = SubResource("CompressedTexture2D_lgwnu")
+texture_hover = SubResource("CompressedTexture2D_lgwnu")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -89,9 +93,64 @@ position = Vector2(73, 70)
 scale = Vector2(0.78112787, 0.5938895)
 texture = ExtResource("10_5dd4i")
 
+[node name="Credit" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="Bg" type="ColorRect" parent="Credit"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 221.0
+offset_bottom = 119.0
+color = Color(0.4876665, 0.62181836, 0.6410254, 1)
+
+[node name="CreditLabel" type="RichTextLabel" parent="Credit/Bg"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 157.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("12_flqon")
+theme_override_fonts/bold_font = ExtResource("12_flqon")
+text = "Credits"
+
+[node name="City" type="RichTextLabel" parent="Credit/Bg"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 195.0
+offset_bottom = 81.0
+theme_override_fonts/normal_font = ExtResource("12_flqon")
+theme_override_font_sizes/normal_font_size = 8
+text = "Cyberpunk Street Environment by ansimuz. itch.io. https://ansimuz.itch.io/cyberpunk-street-environment (accessed 2026-01-19).
+"
+
+[node name="Team" type="RichTextLabel" parent="Credit/Bg"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 88.0
+offset_right = 197.0
+offset_bottom = 111.0
+theme_override_fonts/normal_font = ExtResource("12_flqon")
+theme_override_font_sizes/normal_font_size = 8
+text = " other assets are made by our team"
+
+[node name="exit_credits" type="Button" parent="Credit/Bg"]
+layout_mode = 0
+offset_left = 172.0
+offset_right = 196.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("12_flqon")
+text = "X"
+
 [connection signal="timeout" from="fade_transitionUI/fade_timer" to="." method="_on_fade_timer_timeout"]
 [connection signal="pressed" from="button_manager/CanvasGroup/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="button_manager/CanvasGroup/Credits" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button_manager/CanvasGroup/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="button_manager/CanvasGroup/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Credit/Bg/exit_credits" to="." method="_on_exit_credits_pressed"]
 
 [editable path="fade_transitionUI"]

@@ -328,6 +328,7 @@ position = Vector2(44, 120)
 
 [node name="GameplaySong" parent="Music" index="0"]
 stream = ExtResource("9_spg6w")
+volume_db = -14.312
 
 [node name="MusicMetronome" parent="Music" index="1"]
 stream = ExtResource("12_8ytnv")

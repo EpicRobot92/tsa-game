@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://70l16hiau763"]
+[gd_scene load_steps=20 format=3 uid="uid://70l16hiau763"]
 
 [ext_resource type="Script" uid="uid://dvxrsubtkxd2a" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://d7lqxax2r8wm" path="res://assets/art/ui/avatars/Avatar_Basic_Enemy.png" id="2_3sbvi"]
@@ -6,8 +6,65 @@
 [ext_resource type="Texture2D" uid="uid://bm1oiwruf32fk" path="res://assets/art/ui/avatars/Avatar_Ecliptio.png" id="3_nm1m0"]
 [ext_resource type="Script" uid="uid://cldawu0hk1qje" path="res://UI/beat_pulse.gd" id="4_hat8c"]
 [ext_resource type="PackedScene" uid="uid://ebci32a3rdk7" path="res://utils/animated_text.tscn" id="6_nm1m0"]
+[ext_resource type="Texture2D" uid="uid://c2q8cyky3sley" path="res://assets/art/ui/OnwardArrow.png" id="7_c7tqi"]
+[ext_resource type="Texture2D" uid="uid://cou2m55j48vwj" path="res://assets/art/ui/Logos/MINDLESSLogo1.png" id="8_h81ot"]
+[ext_resource type="FontFile" uid="uid://ue5io601n6mi" path="res://assets/fonts/PressStart2P.ttf" id="9_6rr40"]
+[ext_resource type="AudioStream" uid="uid://8kso8qwc1qr5" path="res://assets/music/PauseMenu.mp3" id="10_0w6e5"]
+[ext_resource type="PackedScene" uid="uid://c8u67u11ka0x6" path="res://scenes/fade_transition.tscn" id="10_6rr40"]
+
+[sub_resource type="Animation" id="Animation_cbfhl"]
+resource_name = "Onward!"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4fiuh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h81ot"]
+_data = {
+&"Onward!": SubResource("Animation_cbfhl"),
+&"RESET": SubResource("Animation_4fiuh")
+}
+
+[sub_resource type="Theme" id="Theme_6rr40"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0w6e5"]
+bg_color = Color(0.36078432, 0.53333336, 0.5058824, 1)
+
+[sub_resource type="Theme" id="Theme_o2jkc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qbci"]
+bg_color = Color(0.65313375, 0.58978146, 0.50938624, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow1yt"]
+bg_color = Color(0.36078432, 0.53333336, 0.5058824, 1)
 
 [node name="UI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_e6gg6")
 
 [node name="UIContainer" type="Control" parent="."]
@@ -38,6 +95,17 @@ offset_bottom = 11.0
 scale = Vector2(2, 2)
 texture = ExtResource("3_nm1m0")
 stretch_mode = 2
+
+[node name="OnwardArrow" type="Sprite2D" parent="UIContainer"]
+modulate = Color(1, 1, 1, 0.6392157)
+position = Vector2(224.00002, 65)
+scale = Vector2(2.9545455, 1.7727273)
+texture = ExtResource("7_c7tqi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIContainer/OnwardArrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_h81ot")
+}
 
 [node name="EnemyHealthBar" parent="UIContainer" instance=ExtResource("2_dajm1")]
 layout_mode = 0
@@ -84,4 +152,58 @@ offset_bottom = 67.0
 horizontal_alignment = 1
 text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press C to attack! (tip: try attacking on beat)", "Now kill these enimies", "", ""])
 
+[node name="fade_transitionUI" parent="UIContainer" instance=ExtResource("10_6rr40")]
+visible = false
+
+[node name="PauseMenu" type="Control" parent="UIContainer"]
+visible = false
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="ColorRect" type="ColorRect" parent="UIContainer/PauseMenu"]
+modulate = Color(1, 1, 1, 0.7921569)
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 135.0
+color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
+[node name="MindlessLogo1" type="Sprite2D" parent="UIContainer/PauseMenu"]
+position = Vector2(120, 27)
+scale = Vector2(0.33984384, 0.29241073)
+texture = ExtResource("8_h81ot")
+
+[node name="Resume" type="Button" parent="UIContainer/PauseMenu"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 58.0
+offset_right = 172.0
+offset_bottom = 82.0
+theme = SubResource("Theme_6rr40")
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("9_6rr40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0w6e5")
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="UIContainer/PauseMenu"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 91.0
+offset_right = 198.0
+offset_bottom = 115.0
+theme = SubResource("Theme_o2jkc")
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("9_6rr40")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_2qbci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ow1yt")
+text = "Main Menu"
+
+[node name="PauseMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_0w6e5")
+volume_db = -12.673
+
+[connection signal="pressed" from="UIContainer/PauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="UIContainer/PauseMenu/MainMenu" to="." method="_on_main_menu_pressed"]
+
 [editable path="UIContainer/EnemyHealthBar"]
+[editable path="UIContainer/fade_transitionUI"]
