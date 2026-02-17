@@ -49,7 +49,7 @@ func _ready() -> void:
 		
 		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
 		
-		
+	StageManager.restart_stage.connect(restart_level.bind())
 	camera_initial_position = camera.position
 	
 	StageManager.checkpoint_start.connect(on_checkpoint_start.bind())
@@ -183,13 +183,16 @@ func _process(_delta: float) -> void:
 		fade_transition.fade_out(true)
 	
 	if player and player.current_health <= 0 and not player_died:
+	
 		player_died = true
-		if DeathCounter < 2:
-			DeathCounter += 1
-			restart_level()
-		else:
-			fade_transition.fade_in(false) 
-			menu_fade_timer.start()
+		StageManager.player_died.emit()
+	#	if DeathCounter < 2:
+	#		DeathCounter += 1
+	#		StageManager.player_died.emit()
+	#		restart_level()
+	#	else:
+	#		fade_transition.fade_in(false) 
+	#		menu_fade_timer.start()
 		
 		
 	

@@ -14,9 +14,11 @@ script = ExtResource("1_8g4ko")
 
 [node name="SFXAttack1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_6jdv3")
+volume_db = 4.771
 
 [node name="SFXAttack2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rvkdu")
+volume_db = 3.816
 
 [node name="SFXAttack3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_smdck")
@@ -30,6 +32,7 @@ stream = ExtResource("6_0unlo")
 
 [node name="SFXPowerMove" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_kqk87")
+volume_db = -14.437
 
 [node name="SFXZoom" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_mtfh1")

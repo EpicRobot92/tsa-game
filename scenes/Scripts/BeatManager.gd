@@ -70,7 +70,6 @@ func grade_player_action() -> Dictionary:
 func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int = 0) -> void:
 	_disconnect_master_finished()
 	_disconnect_all_player_finished()
-	_connect_master_finished() 
 
 	players = new_players
 	if players.size() == 0:
@@ -80,7 +79,8 @@ func set_music_players(new_players: Array[AudioStreamPlayer], master_index: int 
 	master_index = clamp(master_index, 0, players.size() - 1)
 	master = players[master_index]
 
-	
+	_connect_master_finished()
+
 	for p in players:
 		_connect_player_finished(p)
 
