@@ -54,10 +54,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Credits" type="TextureButton" parent="button_manager/CanvasGroup"]
-offset_left = 38.57143
-offset_top = 114.28572
-offset_right = 140.57143
-offset_bottom = 143.28572
+offset_left = 40.0
+offset_top = 81.42858
+offset_right = 142.0
+offset_bottom = 110.42858
 texture_normal = SubResource("CompressedTexture2D_5dd4i")
 texture_pressed = SubResource("CompressedTexture2D_lgwnu")
 texture_hover = SubResource("CompressedTexture2D_lgwnu")
@@ -65,10 +65,11 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Tutorial" type="TextureButton" parent="button_manager/CanvasGroup"]
-offset_left = 32.857143
-offset_top = 71.42857
-offset_right = 147.14287
-offset_bottom = 115.71428
+visible = false
+offset_left = 44.285713
+offset_top = 185.71428
+offset_right = 158.57144
+offset_bottom = 229.99998
 texture_normal = ExtResource("6_5dd4i")
 texture_pressed = ExtResource("5_jk1qb")
 texture_hover = ExtResource("5_jk1qb")

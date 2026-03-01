@@ -358,6 +358,9 @@ position = Vector2(28, 124)
 [node name="GameplaySong" parent="Music" index="0"]
 volume_db = -14.312
 
+[node name="MusicMetronome" parent="Music" index="1"]
+volume_db = -8.44
+
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
 [editable path="Checkpoints/Checkpoint3"]

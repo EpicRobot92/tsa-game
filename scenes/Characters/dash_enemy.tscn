@@ -401,7 +401,6 @@ recover_ms = 320
 require_can_attack = true
 duration_between_hits = 4000
 duration_prep_hit = 100
-damage = 4
 type = 2
 
 [node name="CharacterSprite" parent="." index="1"]

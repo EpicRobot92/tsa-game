@@ -39,7 +39,6 @@ script = ExtResource("2_qepds")
 tutorial_steps = Array[String](["move", "jump", "attack", "jumpkick", "swap", "attack"])
 
 [node name="BackLayer" type="Parallax2D" parent="Backgrounds" index="0"]
-scale = Vector2(0.5, 0.5)
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(240, 0)
 
@@ -49,20 +48,7 @@ offset_bottom = 272.0
 texture = ExtResource("3_r788g")
 stretch_mode = 1
 
-[node name="BackLayer2" type="Parallax2D" parent="Backgrounds" index="1"]
-scale = Vector2(0.5, 0.5)
-scroll_scale = Vector2(0.3, 0.3)
-scroll_offset = Vector2(-72, 0)
-repeat_size = Vector2(240, 0)
-
-[node name="TextureRect" type="TextureRect" parent="Backgrounds/BackLayer2" index="0"]
-offset_right = 240.0
-offset_bottom = 272.0
-texture = ExtResource("3_r788g")
-stretch_mode = 1
-
-[node name="BackFarlayer" type="Parallax2D" parent="Backgrounds" index="2"]
-scale = Vector2(0.5, 0.5)
+[node name="BackFarlayer" type="Parallax2D" parent="Backgrounds" index="1"]
 scroll_scale = Vector2(0.6, 0.6)
 repeat_size = Vector2(240, 0)
 
@@ -73,11 +59,11 @@ texture = ExtResource("4_4ow82")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="MainBackground" parent="Backgrounds" index="3"]
+[node name="MainBackground" parent="Backgrounds" index="2"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_syqya")
 
-[node name="MainBackground2" type="Sprite2D" parent="Backgrounds" index="4"]
+[node name="MainBackground2" type="Sprite2D" parent="Backgrounds" index="3"]
 position = Vector2(343, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_syqya")

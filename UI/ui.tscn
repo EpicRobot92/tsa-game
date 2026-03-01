@@ -79,6 +79,7 @@ style_name = "Regular"
 font_style = 4
 subpixel_positioning = 0
 msdf_pixel_range = 8
+msdf_size = 128
 cache/0/16/0/ascent = 16.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.75
@@ -201,6 +202,7 @@ style_name = "Regular"
 font_style = 4
 subpixel_positioning = 0
 msdf_pixel_range = 8
+msdf_size = 128
 cache/0/16/0/ascent = 16.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.75
@@ -404,7 +406,7 @@ offset_top = 27.0
 offset_right = 239.0
 offset_bottom = 67.0
 horizontal_alignment = 1
-text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press C to attack! (tip: try attacking on beat)", "Now kill these enimies", "", ""])
+text_list = Array[String](["Press WASD or ARROW KEYS to move", "Press X to jump", "Press C to attack", "Jump and attack to Jumpkick", "press E to swap twins", "Press attack on beat for more damage and knockback!", "", "", ""])
 
 [node name="fade_transitionUI" parent="UIContainer" instance=ExtResource("10_6rr40")]
 visible = false

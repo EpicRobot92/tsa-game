@@ -218,9 +218,11 @@ func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReciever
 			state = State.FALL
 			height_speed = knockdown_intensity
 			velocity = direction * kb * knockback_resistance
+			DamageManager.heavy_blow_received.emit()
 		elif hit_type == DamageReciever.HitType.POWER:
 			state = State.FLY
 			velocity = direction * flight_speed
+			DamageManager.heavy_blow_received.emit()
 			fly_end_time = Time.get_ticks_msec() + int(fly_duration * 1000.0)
 		else:
 			state = State.HURT

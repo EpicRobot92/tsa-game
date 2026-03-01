@@ -18,6 +18,7 @@ var step_index := 0
 
 func _init() -> void:
 	#super._init()
+	StageManager.checkpoint_start.emit()
 	start_step()
 
 func start_step() -> void:

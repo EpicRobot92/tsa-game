@@ -138,12 +138,12 @@ func fire_nova_shot(enemy: Node2D) -> void:
 	#KNOCKBACK
 	var kb_mult := 1.0
 	match int(beat["grade"]):
-		BeatManager.BeatGrade.PERFECT: kb_mult = 1.8
-		BeatManager.BeatGrade.GOOD:    kb_mult = 1.3
+		BeatManager.BeatGrade.PERFECT: kb_mult = 3.5
+		BeatManager.BeatGrade.GOOD:    kb_mult = 1.5
 		BeatManager.BeatGrade.OKAY:    kb_mult = 1.0
 		_:                             kb_mult = 0.6
 
-	var base_kb := 220.0
+	var base_kb := 100
 	var kb := base_kb * kb_mult
 
 	# Spawn projectile with configurationnnss!

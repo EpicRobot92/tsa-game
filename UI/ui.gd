@@ -36,7 +36,7 @@ const avatar_map : Dictionary = {
 }
 
 const player_map : Dictionary = {
-	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/avatars/Avatar_Ecliptio.png"),
+	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/avatars/avatar_ecliptio_red.png"),
 	Player.Twin.NOVA: preload("res://assets/art/ui/avatars/avatar_Nova.png"),
 }
 
@@ -71,17 +71,18 @@ func Resume() -> void:
 	get_tree().paused = false
 	pause_music.stop()
 
-func handle_input() -> void: 
-	if Input.is_action_just_pressed("Pause"): 
-		if paused: 
-			paused = false
+func handle_input() -> void:
+	if StageManager.can_pause: 
+		if Input.is_action_just_pressed("Pause"): 
+			if paused: 
+				paused = false
+				Resume()
+			else:
+				paused = true
+				pause()
+		if Input.is_action_just_pressed("resume"): 
 			Resume()
-		else:
-			paused = true
-			pause()
-	if Input.is_action_just_pressed("resume"): 
-		Resume()
-		
+			
 
 func pause(): 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

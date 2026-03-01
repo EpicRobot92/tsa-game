@@ -46,7 +46,7 @@ func _ready() -> void:
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false
-		
+		StageManager.can_pause = true
 		var stage : Stage = STAGE_PREFABS[current_stage_index].instantiate()
 		
 	StageManager.restart_stage.connect(restart_level.bind())
@@ -109,6 +109,10 @@ func on_stage_complete():
 	DeathCounter = 0
 	fade_transition.fade_in(false)
 	await fade_transition.animation_finished
+	if (current_stage_index + 1) >= STAGE_PREFABS.size():
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		return
+	
 	
 	load_next_stage()
 	is_transitioning = false
@@ -179,12 +183,14 @@ func _process(_delta: float) -> void:
 		camera.position = camera_initial_position
 		camera.reset_smoothing()
 		Init_Music()
+		StageManager.can_pause = true
 		player_died = false
 		fade_transition.fade_out(true)
 	
 	if player and player.current_health <= 0 and not player_died:
 	
 		player_died = true
+		StageManager.can_pause = false
 		StageManager.player_died.emit()
 	#	if DeathCounter < 2:
 	#		DeathCounter += 1
@@ -209,4 +215,5 @@ func On_Fade_Finished():
 
 func on_menu_fade_timer_timeout() -> void:
 	print("menu")
+	StageManager.start_level = 0
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
