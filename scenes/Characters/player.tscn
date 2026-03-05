@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bf74djquxx3t5" path="res://scenes/projectiles/normal_nova_projectile.tscn" id="3_5vcpl"]
 [ext_resource type="PackedScene" uid="uid://dgcdo0kpl53ny" path="res://scenes/characters/enemy_slot.tscn" id="4_7xbc7"]
 [ext_resource type="Texture2D" uid="uid://bavyc8aqhb60h" path="res://assets/art/OGCharacters/EcliptioSprites.png" id="4_8u6hb"]
-[ext_resource type="Texture2D" uid="uid://iaqp3x237qsc" path="res://assets/art/OGCharacters/NovaSprites.png" id="5_6eyoc"]
+[ext_resource type="Texture2D" uid="uid://ckg5dxpnkc255" path="res://assets/art/OGCharacters/NovaGreenSprites.png" id="5_6eyoc"]
 
 [sub_resource type="Animation" id="Animation_hutbv"]
 length = 0.001

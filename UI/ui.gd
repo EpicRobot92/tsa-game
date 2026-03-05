@@ -19,6 +19,7 @@ extends CanvasLayer
 @onready var main_menu: Button = $UIContainer/PauseMenu/MainMenu
 
 @onready var fade_transition = $UIContainer/fade_transitionUI/Control/fade_transition
+@onready var player_health_gaughe: TextureRect = $UIContainer/PlayerHealthBar/HealthGaughe
 
 
 @export var duration_healthbar_visible : int 
@@ -37,9 +38,13 @@ const avatar_map : Dictionary = {
 
 const player_map : Dictionary = {
 	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/avatars/avatar_ecliptio_red.png"),
-	Player.Twin.NOVA: preload("res://assets/art/ui/avatars/avatar_Nova.png"),
+	Player.Twin.NOVA: preload("res://assets/art/ui/avatars/avatar_nova_green.png"),
 }
 
+const player_health_map : Dictionary = {
+	Player.Twin.ECLIPTIO: preload("res://assets/art/ui/healthbar-tick.png"),
+	Player.Twin.NOVA: preload("res://assets/art/ui/novaoptiihealthbar-tick.png"),
+}
 
 
 
@@ -103,6 +108,7 @@ func _process(_delta: float) -> void:
 
 func on_twin_swap(twin : Player.Twin): 
 	player_avatar.texture = player_map[twin]
+	player_health_gaughe.texture = player_health_map[twin]
 	beat_pulse.visible = true if twin == Player.Twin.NOVA else false
 	
 

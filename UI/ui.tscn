@@ -465,4 +465,5 @@ volume_db = -12.673
 [connection signal="pressed" from="UIContainer/PauseMenu/MainMenu" to="." method="_on_main_menu_pressed"]
 
 [editable path="UIContainer/EnemyHealthBar"]
+[editable path="UIContainer/PlayerHealthBar"]
 [editable path="UIContainer/fade_transitionUI"]
