@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpc1s3uk6lbb3"]
+
+[ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/characters/basic_enemy.tscn" id="1_2nhiq"]
+
+[node name="music_enemy" instance=ExtResource("1_2nhiq")]
+duration_between_hits = 0
+duration_prep_hit = 0
+damage = 0
+combo_num = 0
+duration_grounded = 0.0
+flight_speed = 0.0
+knockback_intensity = 0.0
+knockdown_intensity = 0.0
+max_health = 0
+type = 0
+speed = 0.0
+fly_duration = 0.25
+
+[editable path="DamageEmmiter"]
+[editable path="DamageReceiver"]
+[editable path="CollateralDamageEmmiter"]
