@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://6k60w15f0ujv"]
+
+[ext_resource type="PackedScene" uid="uid://depcv7ohjp75s" path="res://scenes/characters/boss.tscn" id="1_5s0wp"]
+
+[node name="CharacterBody2D" instance=ExtResource("1_5s0wp")]
+invulnerable = false
+cooldown_duration = 1.5
+
+[editable path="DamageEmmiter"]
+[editable path="DamageReceiver"]
+[editable path="CollateralDamageEmmiter"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wuvx6ika5vje"
+path="res://.godot/imported/140bpm, 134bpm - Angelica.mp3-677762a383de5cafce3487047cc8f5ee.mp3str"
+
+[deps]
+
+source_file="res://assets/music/140bpm, 134bpm - Angelica.mp3"
+dest_files=["res://.godot/imported/140bpm, 134bpm - Angelica.mp3-677762a383de5cafce3487047cc8f5ee.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cho0k8lcpfjlo"
+path="res://.godot/imported/80 bpm - idk.mp3-d6793c616b27f5d0ab930a897bd51c84.mp3str"
+
+[deps]
+
+source_file="res://assets/music/80 bpm - idk.mp3"
+dest_files=["res://.godot/imported/80 bpm - idk.mp3-d6793c616b27f5d0ab930a897bd51c84.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbje4gh6xtt00"
+path="res://.godot/imported/130bpm - Intro.mp3-8ab84877309cdf6adb5c93f30d97f3e3.mp3str"
+
+[deps]
+
+source_file="res://assets/music/130bpm - Intro.mp3"
+dest_files=["res://.godot/imported/130bpm - Intro.mp3-8ab84877309cdf6adb5c93f30d97f3e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
