@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dnlhohoiheox4"]
+[gd_scene load_steps=21 format=3 uid="uid://dnlhohoiheox4"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_5x0c6"]
 [ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="2_rcf3f"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf3f"]
 size = Vector2(26, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecxui"]
+size = Vector2(1090, 4.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlibl"]
 size = Vector2(52, 19.5)
@@ -105,6 +108,10 @@ shape = SubResource("RectangleShape2D_rcf3f")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
 position = Vector2(475, 133.5)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="1"]
+position = Vector2(851, 133.5)
+shape = SubResource("RectangleShape2D_ecxui")
 
 [node name="FirstColisionGroup" type="Node2D" parent="WorldColliders" index="2"]
 
