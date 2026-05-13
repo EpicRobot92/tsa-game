@@ -33,7 +33,10 @@ var paused = false
 const avatar_map : Dictionary = {
 	Character.Type.BASIC_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Basic_Enemy.png"),
 	Character.Type.DASH_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Dasher_Enemy.png"),
-	Character.Type.ELITE_DASHER_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Elite_Dasher_Enemy.png")
+	Character.Type.ELITE_DASHER_ENEMY: preload("res://assets/art/ui/avatars/Avatar_Elite_Dasher_Enemy.png"),
+	Character.Type.EVANGELINE: preload("res://assets/art/ui/avatars/avatar_evangeline.png"),
+	Character.Type.EDEN: preload("res://assets/art/ui/avatars/avatar_eden.png"),
+	Character.Type.ANGELICA: preload("res://assets/art/ui/avatars/avatar_angelica.png"),
 }
 
 const player_map : Dictionary = {

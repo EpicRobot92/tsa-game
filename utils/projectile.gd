@@ -64,22 +64,25 @@ func setup_target(t: Node2D) -> void:
 
 ## checks if the current node or parent contains a danage reciver and if so it deals damage.
 func _apply_damage(node: Node) -> void:
+	print(node)
 	if node is DamageReciever:
 		var recv := node as DamageReciever
 		var hit_dir := Vector2.LEFT if recv.global_position.x < global_position.x else Vector2.RIGHT
 		recv.damage_received.emit(damage, hit_dir, DamageReciever.HitType.NORMAL, knockback)
+		queue_free()
 	elif node.has_node("DamageReceiver"):
 		var recv2: DamageReciever = node.get_node("DamageReceiver")
 		var hit_dir2 := Vector2.LEFT if recv2.global_position.x < global_position.x else Vector2.RIGHT
 		recv2.damage_received.emit(damage, hit_dir2, DamageReciever.HitType.NORMAL, knockback)
+		queue_free()
 
 
 func _on_body_entered(body: Node) -> void:
 	print("hit")
 	_apply_damage(body)
-	queue_free()
+	
 
 func _on_area_entered(area: Area2D) -> void:
 	print("hit")
 	_apply_damage(area)
-	queue_free()
+	

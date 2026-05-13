@@ -3,6 +3,9 @@ extends Node
 
 @export var nb_simultaneous_enemies : int
 
+# Optional boss/checkpoint teleport setup
+@export var teleport_position: Node2D
+
 @onready var enemies : Node2D = $Enemies
 @onready var player_detection_area: Area2D = $PlayerDetectionArea
 @onready var enemy_boundaries: Node2D = $Enemy_Boundaries
@@ -11,37 +14,44 @@ var active_enemy_counter := 0
 var enemy_data : Array[EnemyData] = []
 var is_activated = false 
 
-
+const Boss_List := [
+	Character.Type.EVANGELINE,
+	Character.Type.EDEN,
+	Character.Type.ANGELICA,
+]
 
 
 func _ready() -> void:
 	player_detection_area.body_entered.connect(on_player_enter.bind())
 	EntityManager.death_enemy.connect(on_enemy_death.bind())
+	
 	for enemy : Character in enemies.get_children():
 		enemy_data.append(EnemyData.new(enemy.type, enemy.global_position))
 		enemy.queue_free()
-		
+
 
 func _process(_delta: float) -> void:
-	
 	if is_activated and can_spawn_enemies():
 		print("spawn")
 		active_enemy_counter += 1
 		print(active_enemy_counter)
+		
 		var enemy : EnemyData = enemy_data.pop_front()
 		EntityManager.spawn_enemy.emit(enemy)
 		
-		
+		if enemy.type in Boss_List: 
+			StageManager.boss_started.emit(enemy.type)
+
 
 func Activate_Enemy_Boundaries() -> void:
 	for static_body in enemy_boundaries.get_children(): 
 		var collsion_shape = static_body.get_node("CollisionShape2D")
 		collsion_shape.disabled = false
-		
-		
+
 
 func can_spawn_enemies() -> bool:
 	return enemy_data.size() > 0 and active_enemy_counter < nb_simultaneous_enemies
+
 
 func on_enemy_death(_enemy: Character) -> void:
 	active_enemy_counter -= 1
@@ -51,9 +61,17 @@ func on_enemy_death(_enemy: Character) -> void:
 		print("emit")
 		queue_free()
 
+
 func on_player_enter(_player: Player) -> void:
-	if not is_activated: 
-		call_deferred("Activate_Enemy_Boundaries")
-		StageManager.checkpoint_start.emit()
-		active_enemy_counter = 0
-		is_activated = true
+	if is_activated:
+		return
+	
+	# Optional teleport behavior.
+	# If teleport_position is assigned, move the player who entered.
+	if teleport_position != null:
+		_player.global_position = teleport_position.global_position
+	
+	call_deferred("Activate_Enemy_Boundaries")
+	StageManager.checkpoint_start.emit()
+	active_enemy_counter = 0
+	is_activated = true

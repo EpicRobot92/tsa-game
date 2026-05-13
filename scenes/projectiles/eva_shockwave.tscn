@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://wpes10rwndm0"]
+
+[ext_resource type="PackedScene" uid="uid://6mmy15acwjck" path="res://utils/projectile.tscn" id="1_18i4r"]
+[ext_resource type="Texture2D" uid="uid://ckguk1nk1eo2k" path="res://assets/art/props/shockwave-Evangeline (v2).png" id="2_0kob6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouogn"]
+size = Vector2(16, 32)
+
+[node name="EvaShockwave" instance=ExtResource("1_18i4r")]
+collision_layer = 0
+collision_mask = 16
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0kob6")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ouogn")

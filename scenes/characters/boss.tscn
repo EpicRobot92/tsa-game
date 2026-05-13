@@ -4,7 +4,28 @@
 [ext_resource type="Script" uid="uid://b8jt65ybntfx0" path="res://boss.gd" id="1_imw47"]
 
 [node name="Boss" instance=ExtResource("1_edpq3")]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_imw47")
+invulnerable = false
+cooldown_duration = 1.5
+combo_num = 0
+type = 4
+speed = 0.0
+fly_duration = 0.25
+
+[node name="ShadowSprite" parent="." index="0"]
+visible = false
+
+[node name="DamageEmmiter" parent="." index="4"]
+collision_mask = 16
+
+[node name="DamageReceiver" parent="." index="5"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollateralDamageEmmiter" parent="." index="6"]
+collision_mask = 161
 
 [editable path="DamageEmmiter"]
 [editable path="DamageReceiver"]

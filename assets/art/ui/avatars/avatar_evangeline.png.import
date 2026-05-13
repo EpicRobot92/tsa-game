@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyo8yyvjablgg"
-path="res://.godot/imported/Eden2.png-df098d08d144a921a46d9c7b21055664.ctex"
+uid="uid://bxyyrnl8xmib7"
+path="res://.godot/imported/avatar_evangeline.png-94f169791df591922dab21efd0850464.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/backgrounds/Eden2.png"
-dest_files=["res://.godot/imported/Eden2.png-df098d08d144a921a46d9c7b21055664.ctex"]
+source_file="res://assets/art/ui/avatars/avatar_evangeline.png"
+dest_files=["res://.godot/imported/avatar_evangeline.png-94f169791df591922dab21efd0850464.ctex"]
 
 [params]
 

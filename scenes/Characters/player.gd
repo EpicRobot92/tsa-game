@@ -32,13 +32,18 @@ const AttackSounds := [
 
 func _ready() -> void:
 	super._ready()
+	StageManager.boss_started.connect(reset_healh.bind())
 	EntityManager.twin_swapped.emit(Player.Twin.ECLIPTIO)
 	anim_attacks = ["punch"]
 	## sets up the current twin
 	set_active_visual(
 		nova_visual if current_twin == Twin.NOVA else ecliptio_visual
 	)
-	
+
+func reset_healh(boss):
+	current_health = max_health
+	set_health(max_health, type == Character.Type.PLAYER)
+
 ## Makes the current twin visible
 func set_active_visual(v: Node2D) -> void:
 	if active_visual:

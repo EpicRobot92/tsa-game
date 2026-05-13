@@ -3,11 +3,24 @@ extends Node2D
 const PLAYER_PREFAB := preload("res://scenes/characters/player.tscn")
 
 const STAGE_PREFABS := [
+	preload("res://scenes/stage/BossTest.tscn"),
 	preload("res://scenes/stage/tutorial.tscn"),
 	preload("res://scenes/stage/stage_01.tscn"),
 	preload("res://scenes/stage/stage_2.tscn"),
 	preload("res://scenes/stage/stage_3.tscn"),
 ]
+
+const BOSS_GAMEPLAY_MUSIC_MAP : Dictionary = {
+	Character.Type.EVANGELINE: preload("res://assets/music/104 bpm - Rythmic.mp3"),
+	Character.Type.EDEN: preload("res://assets/music/144bpm - Eden.mp3"),
+	Character.Type.ANGELICA: preload("res://assets/music/140bpm, 134bpm - Angelica.mp3"),
+}
+
+const BOSS_MUSIC_BPM_MAP : Dictionary = {
+	Character.Type.EVANGELINE: 104,
+	Character.Type.EDEN: 144,
+	Character.Type.ANGELICA: 140,
+}
 
 const STAGE_BPM := [
 	140,
@@ -15,6 +28,8 @@ const STAGE_BPM := [
 	130,
 	140
 ]
+
+
 
 
 @onready var actors_container: Node2D = $ActorsContainer
@@ -43,6 +58,7 @@ var DeathCounter := 0
 
 
 func _ready() -> void:
+	StageManager.boss_started.connect(Init_Boss_Music.bind())
 	menu_fade_timer.timeout.connect(on_menu_fade_timer_timeout.bind())
 	if is_stage_ready_for_loading: 
 		is_stage_ready_for_loading = false
@@ -92,6 +108,23 @@ func Init_Music():
 	BeatManager.start_songs()
 	music_metronome.volume_db = -80 # mute
 	
+	
+func Init_Boss_Music(boss):
+	print("start boss song")
+	BeatManager.clear_music_players(true)
+	BeatManager.stop_songs()
+	
+	music_main = music_container.get_node("GameplaySong")
+	music_metronome = music_container.get_node("MusicMetronome")
+	music_main.stream = BOSS_GAMEPLAY_MUSIC_MAP[boss]
+	music_metronome.stream = BOSS_GAMEPLAY_MUSIC_MAP[boss]
+	
+	BeatManager.bpm = BOSS_MUSIC_BPM_MAP[boss]
+	print(BeatManager.bpm)
+	BeatManager.set_music_players([music_main ,music_metronome])
+	BeatManager.loop_songs = true
+	BeatManager.start_songs()
+	music_metronome.volume_db = -80 # mute
 
 func _on_twin_swapped(new_twin: Player.Twin) -> void:
 		if new_twin == Player.Twin.NOVA:
@@ -166,6 +199,8 @@ func restart_level() -> void:
 
 func on_checkpoint_start() -> void: 
 	is_camera_locked = true
+	if camera and player:
+		camera.position.x = player.position.x
 	
 func on_checkpoint_complete(_checkpoint: Checkpoint) -> void:
 	is_camera_locked = false
