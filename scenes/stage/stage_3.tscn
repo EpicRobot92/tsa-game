@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://41mx3umm633y"]
+[gd_scene load_steps=30 format=3 uid="uid://41mx3umm633y"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_2c7xa"]
 [ext_resource type="Texture2D" uid="uid://nb4y3wjhkhhp" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 1/PNG/layers/far-buildings.png" id="2_j417p"]
@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://assets/art/Tilesets/SynthCitiesGodot/SynthCitiesGodot/CityLayers/foreground.png" id="5_dox8q"]
 [ext_resource type="Texture2D" uid="uid://cgisongqrg2ht" path="res://assets/art/props/SewerHoleSprite-1.png.png" id="6_0ix41"]
 [ext_resource type="PackedScene" uid="uid://bmsk2w5eushcn" path="res://scenes/stage/checkpoint.tscn" id="7_0q8b3"]
+[ext_resource type="Texture2D" uid="uid://b8aq8y3ite2hr" path="res://assets/art/backgrounds/AngelicaBG2.png" id="7_4isxg"]
 [ext_resource type="PackedScene" uid="uid://63lsetgygmpx" path="res://scenes/characters/dash_enemy.tscn" id="8_7rhld"]
 [ext_resource type="PackedScene" uid="uid://c0cvkhobauf70" path="res://scenes/characters/basic_enemy.tscn" id="9_8ytnv"]
 [ext_resource type="AudioStream" uid="uid://bvlwerfs5s1gd" path="res://assets/music/Lobby Music.mp3" id="9_spg6w"]
 [ext_resource type="PackedScene" uid="uid://bq2jdrk2hrj2t" path="res://scenes/characters/elite_dash_enemy.tscn" id="10_u2moa"]
 [ext_resource type="AudioStream" uid="uid://dh4qw0ub16oyd" path="res://assets/music/Novametrnome(140 BPM).mp3" id="12_8ytnv"]
+[ext_resource type="PackedScene" uid="uid://brla28i2031di" path="res://scenes/characters/angellca.tscn" id="12_pt82i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ix41"]
 size = Vector2(26.75, 20)
@@ -49,8 +51,14 @@ size = Vector2(126, 20)
 a = Vector2(-65.625, -11)
 b = Vector2(0.375, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3t48"]
+size = Vector2(135, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6qk8"]
 size = Vector2(135, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh5j5"]
+size = Vector2(5.5, 57)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_uh5j5"]
 a = Vector2(-65.625, -11)
@@ -102,6 +110,17 @@ texture = ExtResource("6_0ix41")
 position = Vector2(1007, 124)
 scale = Vector2(0.59375, 0.40625)
 texture = ExtResource("6_0ix41")
+
+[node name="AngelicaBg2" type="Sprite2D" parent="Backgrounds" index="7"]
+position = Vector2(1516.0001, 65)
+scale = Vector2(0.15513036, 0.15209839)
+texture = ExtResource("7_4isxg")
+
+[node name="EnemySpawn" type="Node2D" parent="Backgrounds/AngelicaBg2" index="0"]
+position = Vector2(-804.6826, 361.29004)
+
+[node name="BossSpawn" type="Node2D" parent="Backgrounds/AngelicaBg2" index="1"]
+position = Vector2(-0.0007868886, 315.5852)
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
 position = Vector2(13.625, 97)
@@ -215,7 +234,36 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="0"]
 position = Vector2(270.5, 95)
+shape = SubResource("RectangleShape2D_x3t48")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="1"]
+position = Vector2(731, 75)
 shape = SubResource("RectangleShape2D_i6qk8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="2"]
+position = Vector2(923, 75)
+shape = SubResource("RectangleShape2D_i6qk8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="3"]
+position = Vector2(899, 147)
+shape = SubResource("RectangleShape2D_i6qk8")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="4"]
+position = Vector2(766, 148)
+shape = SubResource("RectangleShape2D_i6qk8")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="5"]
+position = Vector2(694.75, 111.5)
+shape = SubResource("RectangleShape2D_uh5j5")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="6"]
+position = Vector2(962, 110)
+shape = SubResource("RectangleShape2D_uh5j5")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup3/StaticBody2D4" index="7"]
+position = Vector2(827, 87)
+rotation = 1.5865043
+shape = SubResource("RectangleShape2D_uh5j5")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup3" index="3"]
 collision_mask = 0
@@ -298,30 +346,15 @@ position = Vector2(-8, 120)
 [node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint3/Enemies" index="6" instance=ExtResource("10_u2moa")]
 position = Vector2(-22, 125)
 
-[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource("7_0q8b3")]
+[node name="Checkpoint4" parent="Checkpoints" index="3" node_paths=PackedStringArray("teleport_position") instance=ExtResource("7_0q8b3")]
 position = Vector2(728, 0)
 nb_simultaneous_enemies = 4
+teleport_position = NodePath("../../Backgrounds/AngelicaBg2/BossSpawn")
 
-[node name="DashEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="0" instance=ExtResource("8_7rhld")]
-position = Vector2(248, 120)
-
-[node name="BasicEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="1" instance=ExtResource("9_8ytnv")]
-position = Vector2(-8, 120)
-
-[node name="BasicEnemy3" parent="Checkpoints/Checkpoint4/Enemies" index="2" instance=ExtResource("9_8ytnv")]
-position = Vector2(249, 120)
-
-[node name="EliteDasherEnemy" parent="Checkpoints/Checkpoint4/Enemies" index="3" instance=ExtResource("10_u2moa")]
-position = Vector2(-14, 129)
-
-[node name="BasicEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="4" instance=ExtResource("9_8ytnv")]
-position = Vector2(-8, 120)
-
-[node name="BasicEnemy4" parent="Checkpoints/Checkpoint4/Enemies" index="5" instance=ExtResource("9_8ytnv")]
-position = Vector2(-8, 120)
-
-[node name="EliteDasherEnemy2" parent="Checkpoints/Checkpoint4/Enemies" index="6" instance=ExtResource("10_u2moa")]
-position = Vector2(19, 121)
+[node name="Angelica" parent="Checkpoints/Checkpoint4/Enemies" index="0" instance=ExtResource("12_pt82i")]
+position = Vector2(785, 60)
+vulnerable_flicker_speed = 12.0
+vulnerable_flicker_min_alpha = 0.35
 
 [node name="PlayerSpawnLocation" parent="." index="4"]
 position = Vector2(44, 120)

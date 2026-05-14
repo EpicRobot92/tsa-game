@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://brla28i2031di"]
+[gd_scene load_steps=5 format=3 uid="uid://brla28i2031di"]
 
 [ext_resource type="PackedScene" uid="uid://6k60w15f0ujv" path="res://scenes/characters/Evangeline.tscn" id="1_q2a4x"]
 [ext_resource type="Texture2D" uid="uid://ba7heiqkmien5" path="res://assets/art/OGCharacters/AngelicaV2.png" id="2_8fnj0"]
 [ext_resource type="Script" uid="uid://1txbqldpnhjy" path="res://scenes/characters/angellca.gd" id="2_d8cam"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8cam"]
+size = Vector2(61, 79)
+
 [node name="Angelica" instance=ExtResource("1_q2a4x")]
 script = ExtResource("2_d8cam")
+enemies_per_wave = 3
+vulnerable_flicker_speed = 12.0
+vulnerable_flicker_min_alpha = 0.35
+damage = 5
 type = 6
 
 [node name="ShadowSprite" parent="." index="0"]
@@ -15,6 +22,15 @@ visible = false
 position = Vector2(8, 8.75)
 scale = Vector2(0.875, 0.890625)
 texture = ExtResource("2_8fnj0")
+
+[node name="CollisionShape2D" parent="DamageReceiver" index="0"]
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_d8cam")
+
+[node name="Attack1Pos" parent="." index="7"]
+position = Vector2(1, 6)
+rotation = -1.5865043
+scale = Vector2(61.35684, -171.48808)
 
 [editable path="DamageEmmiter"]
 [editable path="DamageReceiver"]

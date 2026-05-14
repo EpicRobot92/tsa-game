@@ -2,6 +2,7 @@ extends Node
 
 signal death_enemy(enemy: Character)
 signal spawn_enemy(enemy_data: EnemyData)
+signal spawn_boss_enemy(type : int, position : Vector2, player : Player)
 
 signal twin_swapped(new_twin: Player.Twin)
 signal Player_Acted(state : Player.State)
@@ -23,7 +24,7 @@ func spawn_projectile(
 	var p = projectile_scene.instantiate()
 	p.global_position = pos
 
-	# Apply config overrides (damage, speed, lifetime, etc.)
+	
 	for k in config.keys():
 		if k in p:
 			p.set(k, config[k])

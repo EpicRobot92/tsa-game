@@ -13,6 +13,7 @@ extends Node
 var active_enemy_counter := 0
 var enemy_data : Array[EnemyData] = []
 var is_activated = false 
+var boss_alive := false
 
 const Boss_List := [
 	Character.Type.EVANGELINE,
@@ -39,7 +40,8 @@ func _process(_delta: float) -> void:
 		var enemy : EnemyData = enemy_data.pop_front()
 		EntityManager.spawn_enemy.emit(enemy)
 		
-		if enemy.type in Boss_List: 
+		if enemy.type in Boss_List:
+			boss_alive = true
 			StageManager.boss_started.emit(enemy.type)
 
 
@@ -53,10 +55,18 @@ func can_spawn_enemies() -> bool:
 	return enemy_data.size() > 0 and active_enemy_counter < nb_simultaneous_enemies
 
 
-func on_enemy_death(_enemy: Character) -> void:
+func on_enemy_death(enemy: Character) -> void:
+	# Ignore normal enemy deaths while boss is active
+	if boss_alive and enemy.type not in Boss_List:
+		return
+	
 	active_enemy_counter -= 1
 	
-	if active_enemy_counter == 0 and enemy_data.size() == 0:
+	# Boss died
+	if enemy.type in Boss_List:
+		boss_alive = false
+	
+	if active_enemy_counter <= 0 and enemy_data.size() == 0:
 		StageManager.checkpoint_complete.emit(self)
 		print("emit")
 		queue_free()

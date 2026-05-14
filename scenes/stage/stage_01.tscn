@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dnlhohoiheox4"]
+[gd_scene load_steps=23 format=3 uid="uid://dnlhohoiheox4"]
 
 [ext_resource type="PackedScene" uid="uid://bsbajk144p886" path="res://scenes/stage/stage.tscn" id="1_5x0c6"]
 [ext_resource type="Texture2D" uid="uid://yp44su3kkptb" path="res://assets/art/Tilesets/cyberpunk-street-files/cyberpunk-street-files/Assets/Version 2/Layers/foreground-empty.png" id="2_rcf3f"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://6k60w15f0ujv" path="res://scenes/characters/Evangeline.tscn" id="9_mppgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf3f"]
-size = Vector2(26, 21)
+size = Vector2(55, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecxui"]
 size = Vector2(1090, 4.5)
@@ -44,6 +44,12 @@ size = Vector2(52, 19.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrauv"]
 size = Vector2(131, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmfhf"]
+size = Vector2(131, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wg7q"]
+size = Vector2(3.75, 72)
 
 [node name="Stage-01" instance=ExtResource("1_5x0c6")]
 
@@ -103,7 +109,7 @@ scale = Vector2(0.625, 0.53125)
 texture = ExtResource("5_xojio")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
-position = Vector2(13, 95.5)
+position = Vector2(-1.5, 95.5)
 shape = SubResource("RectangleShape2D_rcf3f")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
@@ -123,11 +129,11 @@ position = Vector2(122, 75)
 shape = SubResource("RectangleShape2D_rlibl")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="1"]
-collision_layer = 0
-collision_mask = 128
+collision_layer = 128
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="0"]
-position = Vector2(1.5, 118)
+position = Vector2(-27, 118)
 shape = SubResource("RectangleShape2D_xojio")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="2"]
@@ -248,9 +254,13 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup4/StaticBody2D4" index="0"]
 position = Vector2(268.5, 95)
-shape = SubResource("RectangleShape2D_yrauv")
+shape = SubResource("RectangleShape2D_cmfhf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup4/StaticBody2D4" index="1"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup4/StaticBody2D4" index="1"]
+position = Vector2(170, 101)
+shape = SubResource("RectangleShape2D_1wg7q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup4/StaticBody2D4" index="2"]
 position = Vector2(-3, 95)
 shape = SubResource("RectangleShape2D_mppgq")
 
@@ -412,7 +422,7 @@ nb_simultaneous_enemies = 5
 position = Vector2(16, 0)
 
 [node name="Evangeline" parent="Checkpoints/Checkpoint5/Enemies" index="0" instance=ExtResource("9_mppgq")]
-position = Vector2(184, 120)
+position = Vector2(208, 128)
 
 [node name="PlayerDetectionArea" parent="Checkpoints/Checkpoint5" index="2"]
 position = Vector2(8, 0)

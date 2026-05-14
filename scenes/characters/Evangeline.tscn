@@ -13,7 +13,7 @@ height = 40.0
 size = Vector2(58, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxpnn"]
-size = Vector2(62, 35)
+size = Vector2(61, 35)
 
 [node name="Evangeline" instance=ExtResource("1_rgiy0")]
 script = ExtResource("2_hxpnn")
@@ -49,7 +49,7 @@ position = Vector2(0, -17.5)
 shape = SubResource("RectangleShape2D_c61me")
 
 [node name="CollisionShape2D" parent="DamageReceiver" index="0"]
-position = Vector2(0, -18.5)
+position = Vector2(-20.5, -18.5)
 shape = SubResource("RectangleShape2D_hxpnn")
 
 [node name="Attack1Pos" type="Node2D" parent="." index="7"]

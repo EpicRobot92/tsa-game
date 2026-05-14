@@ -73,6 +73,9 @@ position = Vector2(1192.0624, 63.562485)
 scale = Vector2(0.17895257, 0.15499997)
 texture = ExtResource("5_equum")
 
+[node name="EnemySpawn" type="Node2D" parent="Backgrounds/AngelicaBg2" index="0"]
+position = Vector2(-804.6826, 361.29004)
+
 [node name="ForegroundEmpty" type="Sprite2D" parent="Backgrounds" index="4"]
 position = Vector2(-172, 68)
 scale = Vector2(0.5, 0.5)
@@ -97,6 +100,9 @@ texture = ExtResource("5_2jpk1")
 position = Vector2(1012, 122)
 scale = Vector2(0.625, 0.53125)
 texture = ExtResource("5_2jpk1")
+
+[node name="WorldColliders" parent="." index="1"]
+scale = Vector2(1.0001817, 0.9950814)
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
 position = Vector2(13, 95.5)
@@ -228,8 +234,9 @@ teleport_position = NodePath("../../BossSpawnTest")
 [node name="Checkpoint_Boundary2" parent="Checkpoints/Checkpoint/Enemy_Boundaries" index="0"]
 position = Vector2(296, 112)
 
-[node name="Angelica" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("8_f1u4u")]
+[node name="Angelica" parent="Checkpoints/Checkpoint/Enemies" index="0" node_paths=PackedStringArray("EnemySpawn") instance=ExtResource("8_f1u4u")]
 position = Vector2(1225, 56)
+EnemySpawn = NodePath("../../../../Backgrounds/AngelicaBg2/EnemySpawn")
 
 [node name="PlayerDetectionArea" parent="Checkpoints/Checkpoint" index="2"]
 position = Vector2(8, 0)

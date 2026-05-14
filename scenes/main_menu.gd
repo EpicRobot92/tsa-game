@@ -44,7 +44,7 @@ func _on_fade_timer_timeout() -> void:
 	if button_type == "init":
 		fade_trans.idle()
 	if button_type == "start": 
-		get_tree().change_scene_to_file("res://scenes/world.tscn")
+		get_tree().change_scene_to_file("res://scenes/intro.tscn")
 	if button_type == "tutorial": 
 		StageManager.start_level = -1
 		get_tree().change_scene_to_file("res://scenes/world.tscn")

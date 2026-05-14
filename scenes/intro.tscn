@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://cacgw7jbhdkx2"]
+
+[ext_resource type="Script" uid="uid://kand55gh3ud0" path="res://scenes/intromain.gd" id="1_7a8ye"]
+[ext_resource type="AudioStream" uid="uid://bbje4gh6xtt00" path="res://assets/music/130bpm - Intro.mp3" id="1_wfs7u"]
+[ext_resource type="Texture2D" uid="uid://5uvfw3vlpuos" path="res://assets/art/Intro/Scene1.png" id="2_0a7ni"]
+[ext_resource type="FontFile" uid="uid://dlvdsi1tvaikn" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="3_i2l1n"]
+[ext_resource type="Script" uid="uid://0icc1lqmlhlg" path="res://utils/animated_text.gd" id="3_y72e6"]
+
+[node name="Intro" type="CanvasLayer"]
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("1_wfs7u")
+autoplay = true
+parameters/looping = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7a8ye")
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 241.0
+offset_bottom = 134.0
+texture = ExtResource("2_0a7ni")
+
+[node name="TextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_top = 98.0
+offset_right = 240.0
+offset_bottom = 135.0
+theme_override_fonts/normal_font = ExtResource("3_i2l1n")
+theme_override_fonts/bold_font = ExtResource("3_i2l1n")
+theme_override_fonts/bold_italics_font = ExtResource("3_i2l1n")
+theme_override_fonts/italics_font = ExtResource("3_i2l1n")
+theme_override_fonts/mono_font = ExtResource("3_i2l1n")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+text = "6767"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_y72e6")
+text_list = Array[String](["This world used to be like this", "Cities thrived.", "Until MIND took over…", "They’re great tech spread… everywhere.", "Before we knew it..", "MIND", "supposedly founded by Angelica ", "Put the world into mass chaos", "But even in times like these ", "we fight back.", "A resistance was formed…", "Kontraŭ Menso.  ", "And among them…", "Two would change everything.", "They won't just fight to survive...", "But to take everything back.", "To break the system.", "To free the world. ", "To make it…", "MINDLESS"])
+speed_multiplier = 1.2
+metadata/_custom_type_script = "uid://0icc1lqmlhlg"
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 6.0
+
+[node name="FadeRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 241.0
+offset_bottom = 135.0
+color = Color(0, 0, 0, 1)
+
+[node name="PressEnterToSkip" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.79607844)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 2.0
+offset_right = 240.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("3_i2l1n")
+theme_override_font_sizes/font_size = 6
+text = "Press Enter To Skip"

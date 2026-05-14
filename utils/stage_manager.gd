@@ -1,6 +1,6 @@
 extends Node
 
-@export var start_level = 0
+@export var start_level = -1
 @export var can_pause = true
 
 signal checkpoint_start

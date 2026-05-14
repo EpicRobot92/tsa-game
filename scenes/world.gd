@@ -24,6 +24,7 @@ const BOSS_MUSIC_BPM_MAP : Dictionary = {
 
 const STAGE_BPM := [
 	140,
+	140,
 	118,
 	130,
 	140

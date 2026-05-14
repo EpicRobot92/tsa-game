@@ -55,10 +55,10 @@ a = Vector2(-91.796875, 3)
 b = Vector2(-145.79688, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36kn3"]
-size = Vector2(30.40625, 8)
+size = Vector2(63.203125, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wur7e"]
-size = Vector2(759.625, 8)
+size = Vector2(792.8125, 8)
 
 [node name="Stage2" instance=ExtResource("1_m0r3x")]
 
@@ -128,11 +128,11 @@ position = Vector2(91.703125, 88)
 shape = SubResource("RectangleShape2D_rkgii")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="WorldColliders/FirstColisionGroup" index="1"]
-collision_layer = 0
-collision_mask = 128
+collision_layer = 128
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="0"]
-position = Vector2(-13.796875, 118)
+position = Vector2(-47.796875, 115)
 shape = SubResource("RectangleShape2D_efjrl")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldColliders/FirstColisionGroup/StaticBody2D7" index="1"]
@@ -239,11 +239,11 @@ position = Vector2(161, 95)
 shape = SubResource("SegmentShape2D_ifqgx")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D" index="0"]
-position = Vector2(15, 110)
+position = Vector2(-1.3984375, 110)
 shape = SubResource("RectangleShape2D_36kn3")
 
 [node name="CollisionShape2D" parent="WorldColliders/StaticBody2D2" index="0"]
-position = Vector2(380, 134)
+position = Vector2(363.40625, 134)
 shape = SubResource("RectangleShape2D_wur7e")
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("6_hish3")]

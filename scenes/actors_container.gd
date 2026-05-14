@@ -14,6 +14,18 @@ const ENEMY_MAP := {
 
 func _ready() -> void:
 	EntityManager.spawn_enemy.connect(on_spawn_enemy.bind())
+	EntityManager.spawn_boss_enemy.connect(on_spawn_boss_enemy.bind())
+
+
+func on_spawn_boss_enemy(type : int, position : Vector2, player : Player) -> void:
+
+	
+
+	var enemy_scene: PackedScene = ENEMY_MAP[type]
+	var enemy: Character = enemy_scene.instantiate()
+	enemy.global_position = position
+	enemy.player = player
+	add_child(enemy)
 
 
 func on_spawn_enemy(enemy_data: EnemyData) -> void:
@@ -26,6 +38,17 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 
 	var enemy_scene: PackedScene = ENEMY_MAP[enemy_data.type]
 	var enemy: Character = enemy_scene.instantiate()
+	
 	enemy.global_position = enemy_data.global_position
 	enemy.player = player
+
+	# Special setup for Angelica
+	if enemy_data.type == Character.Type.ANGELICA:
+		var enemy_spawn := get_tree().current_scene.find_child("EnemySpawn", true, false)
+		
+		if enemy_spawn != null:
+			enemy.EnemySpawn = enemy_spawn
+		else:
+			push_error("Could not find EnemySpawn node in current scene!")
+
 	add_child(enemy)
